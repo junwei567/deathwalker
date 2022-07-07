@@ -13,7 +13,7 @@ public class FloatingTextManager : MonoBehaviour
     private FloatingText GetFloatingText()
     {
         FloatingText text = floatingTexts.Find(t => !t.active);
-        // If no text in text array
+        // If no inactive text in text array
         if (text == null)
         {
             text = new FloatingText();
@@ -37,7 +37,7 @@ public class FloatingTextManager : MonoBehaviour
         // Update motion and duration
         floatingText.motion = motion;
         floatingText.duration = duration;
-
+        // Activate floating text
         floatingText.Show();
     }
     // Start is called before the first frame update

@@ -3,54 +3,56 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-public class PlayerController : MonoBehaviour
+public class PlayerController : Movement
 {
-    private BoxCollider2D boxCollider;
-    private Vector3 moveDelta;
-    private RaycastHit2D hit;
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        boxCollider = GetComponentInParent<BoxCollider2D>();
-    }
+    public float dashSpeed = 100.0f;
+    private bool dashing = false;
+    public float dashTime = 1.5f;
+    public float lastUsed;
+    public float cooldown;
+    public float threshold = 0.01f;
+   
     void FixedUpdate()
     {
-        // a => -1, d -> 1
-        float x = Input.GetAxisRaw("Horizontal");
-        // s => -1, w -> 1
-        float y = Input.GetAxisRaw("Vertical");
-
-        // Reset moveDelta
-        moveDelta = new Vector3(x,y,0);
-
-        // Swap sprite direction
-        if (moveDelta.x > 0) {
-            transform.localScale = Vector3.one;
-        } else if (moveDelta.x < 0) {
-            transform.localScale = new Vector3(-1, 1, 1);
-        }
-
-        // A BoxCast is conceptually like dragging a box through the Scene in a particular direction. Any object making contact with the box can be detected and reported.
-        // Make sure we can move in this direction by casting a box there first, if box returns null, we're free to move
-        // y-direction box cast
-        hit = Physics2D.BoxCast(transform.position, boxCollider.size, 0, new Vector2(0, moveDelta.y), Mathf.Abs(moveDelta.y * Time.deltaTime), LayerMask.GetMask("Box"));
-        if (hit.collider == null) {
-            transform.Translate(0, moveDelta.y * Time.deltaTime, 0);
-        }
-        // x-direction box cast
-        hit = Physics2D.BoxCast(transform.position, boxCollider.size, 0, new Vector2(moveDelta.x, 0), Mathf.Abs(moveDelta.x * Time.deltaTime), LayerMask.GetMask("Box"));
-        if (hit.collider == null) {
-            transform.Translate(moveDelta.x * Time.deltaTime, 0, 0);
-        }
-
+        
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        Vector2 crosshairPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        float x = crosshairPos.x - transform.position.x;
+        float y = crosshairPos.y - transform.position.y;
 
+        // If player clicks on dash button
+        if (Input.GetMouseButtonDown(0)) {
+            // If skill is NOT on cooldown
+            if (!(Time.time - lastUsed < cooldown)) {
+                lastUsed = Time.time;
+                dashing = true;
+            }
+            
+        }
+        // Update dashing variable to false when dash is over
+        // Dashing will be true for dash time interval
+        if (Time.time - lastUsed > dashTime){
+            dashing = false;
+        }
+
+        // Stop moving the player if player is close enough to the crosshair    
+        if (Mathf.Abs(x) < threshold && Mathf.Abs(y) < threshold) {
+            UpdateMovement(Vector3.zero);
+        } 
+        // If in dash
+        else if (dashing) {
+            Debug.Log("dash");
+            UpdateMovement(new Vector3(x, y, 0).normalized * dashSpeed);
+        } 
+        // If out of dash
+        else {
+            Debug.Log("normal walking");
+            UpdateMovement(new Vector3(x,y,0).normalized);
+        }
 
     }
 }

@@ -7,6 +7,7 @@ public class Collidable : MonoBehaviour
     public ContactFilter2D filter;
     private BoxCollider2D boxCollider;
     private Collider2D[] hits = new Collider2D[10];
+    protected bool collided = false;
     // Start is called before the first frame update
     protected virtual void Start()
     {
@@ -30,6 +31,6 @@ public class Collidable : MonoBehaviour
 
     protected virtual void onCollide(Collider2D col) 
     {
-        Debug.Log("Base class collision detected");
+        
     }
 }
