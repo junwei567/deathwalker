@@ -11,15 +11,12 @@ public class PlayerController : Movement
     public float lastUsed;
     public float cooldown;
     public float threshold = 0.01f;
-   
-    void FixedUpdate()
-    {
-        
-    }
+    public GameObject enemy;
 
     // Update is called once per frame
-    void Update()
+    protected override void Update()
     {
+        base.Update();
         Vector2 crosshairPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         float x = crosshairPos.x - transform.position.x;
         float y = crosshairPos.y - transform.position.y;
@@ -54,5 +51,13 @@ public class PlayerController : Movement
             UpdateMovement(new Vector3(x,y,0).normalized);
         }
 
+    }
+
+    protected override void onCollide(Collider2D col)
+    {
+        if (!collided && col.name == "SkullEnemy" && dashing) {
+            collided = true;
+            Destroy(enemy);
+        }
     }
 }
