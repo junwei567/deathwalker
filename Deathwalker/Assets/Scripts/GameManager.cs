@@ -64,12 +64,16 @@ public class GameManager : MonoBehaviour
     {
         // testing Health
         if (Input.GetKeyDown(KeyCode.Backspace)) {
-            playerHealthSO.Value--;
-            displayHealth();
+            if (playerHealthSO.Value > 1) {
+                playerHealthSO.Value--;
+                displayHealth();
+            }
         }
         if (Input.GetKeyDown(KeyCode.Tab)) {
-            playerHealthSO.Value++;
-            displayHealth();
+            if (playerHealthSO.Value < 4) {
+                playerHealthSO.Value++;
+                displayHealth();
+            }
         }
     }
 
