@@ -999,7 +999,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -702, y: 321}
+  m_AnchoredPosition: {x: -700, y: 450}
   m_SizeDelta: {x: 77.168, y: 80.9733}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &287033033
@@ -1217,7 +1217,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'Health: 3'
+  m_Text: 'Health: '
 --- !u!222 &411006493
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1432,7 +1432,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -470, y: 321}
+  m_AnchoredPosition: {x: -468.1, y: 450}
   m_SizeDelta: {x: 77.168, y: 80.9733}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &688304104
@@ -2013,7 +2013,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -548, y: 321}
+  m_AnchoredPosition: {x: -545.4, y: 450}
   m_SizeDelta: {x: 77.168, y: 80.9733}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1328198534
@@ -2089,7 +2089,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -624, y: 321}
+  m_AnchoredPosition: {x: -622.7, y: 450}
   m_SizeDelta: {x: 77.168, y: 80.9733}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1387766624
