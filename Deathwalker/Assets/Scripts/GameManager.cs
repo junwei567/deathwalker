@@ -82,17 +82,27 @@ public class GameManager : MonoBehaviour
         // TODO BIG ASSUMPTION: every attack only reduce player health by 1
         if (playerHealthSO.Value == 4) {
             heart4.gameObject.SetActive(true);
+            heart3.gameObject.SetActive(true);
+            heart2.gameObject.SetActive(true);
+            heart1.gameObject.SetActive(true);
         }
         if (playerHealthSO.Value == 3) {
             heart4.gameObject.SetActive(false);
             heart3.gameObject.SetActive(true);
+            heart2.gameObject.SetActive(true);
+            heart1.gameObject.SetActive(true);
         }
         if (playerHealthSO.Value == 2) {
+            heart4.gameObject.SetActive(false);
             heart3.gameObject.SetActive(false);
             heart2.gameObject.SetActive(true);
+            heart1.gameObject.SetActive(true);
         }
         if (playerHealthSO.Value == 1) {
+            heart4.gameObject.SetActive(false);
+            heart3.gameObject.SetActive(false);
             heart2.gameObject.SetActive(false);
+            heart1.gameObject.SetActive(true);
         }
     }
 }
