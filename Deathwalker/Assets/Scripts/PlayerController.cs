@@ -13,6 +13,9 @@ public class PlayerController : Movement
     public float threshold = 0.01f;
     public GameObject enemy;
 
+    [SerializeField]
+    private IntegerSO playerHealthSO;
+
     // Update is called once per frame
     protected override void Update()
     {
