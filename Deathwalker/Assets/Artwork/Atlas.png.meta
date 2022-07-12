@@ -448,7 +448,7 @@ TextureImporter:
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -456,6 +456,27 @@ TextureImporter:
       bones: []
       spriteID: 0c25a46022a5949438ad657de02f157d
       internalID: 288097579
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy_0
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 96
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fdfe85c4682204442a7a2ac68f0e8032
+      internalID: 2047125679
       vertices: []
       indices: 
       edges: []
@@ -485,6 +506,7 @@ TextureImporter:
       wall_4: 2050664696
       box_0: 1976619002
       wall_8: 2041252712
+      enemy_0: 2047125679
       wall_7: 717619823
       redfountain_1: -1152645531
       floor_0: 288097579
