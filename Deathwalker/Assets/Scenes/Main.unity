@@ -1410,7 +1410,7 @@ MonoBehaviour:
     maxDepth: 0
     minNormalAngle: 0
     maxNormalAngle: 0
-  cooldown: 2
+  cooldown: 1.5
   lastUsed: 0
   arrowSpeed: 4
   player: {fileID: 1108756351}
@@ -1523,7 +1523,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 0.9
+  m_Radius: 1
 --- !u!1 &539240490
 GameObject:
   m_ObjectHideFlags: 0
