@@ -58,12 +58,10 @@ public class PlayerController : Movement
         } 
         // If in dash
         else if (dashing) {
-            Debug.Log("dash");
             UpdateMovement(new Vector3(x, y, 0).normalized * dashSpeed);
         } 
         // If out of dash
         else {
-            Debug.Log("normal walking");
             UpdateMovement(new Vector3(x,y,0).normalized);
         }
 
