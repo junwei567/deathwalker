@@ -7,12 +7,13 @@ public class PlayerController : Movement
 {
     public float dashSpeed = 100.0f;
     private bool dashing = false;
-    public float dashTime = 1.5f;
+    public float dashTime = 1.0f;
     public float lastUsed;
-    public float cooldown;
+    public float cooldown = 1.0f;
     public float threshold = 0.01f;
     public GameObject enemy;
     private Animator playerAnimator;
+    private AudioSource playerAudio;
 
     [SerializeField]
     private IntegerSO playerHealthSO;
@@ -21,6 +22,7 @@ public class PlayerController : Movement
     {
         base.Start();
         playerAnimator = GetComponent<Animator>();
+        playerAudio = GetComponent<AudioSource>();
     }
     // Update is called once per frame
     protected override void Update()
@@ -30,8 +32,8 @@ public class PlayerController : Movement
         float x = crosshairPos.x - transform.position.x;
         float y = crosshairPos.y - transform.position.y;
         // Update Animator's parameters
-        playerAnimator.SetFloat("xSpeed", Mathf.Abs(x));
-        playerAnimator.SetFloat("ySpeed", Mathf.Abs(y));
+        playerAnimator.SetFloat("xySpeed", (Mathf.Abs(x) + Mathf.Abs(y)));
+
         // If player clicks on dash button
         if (Input.GetMouseButtonDown(0)) {
             // If skill is NOT on cooldown
@@ -39,7 +41,8 @@ public class PlayerController : Movement
                 lastUsed = Time.time;
                 dashing = true;
                 playerAnimator.SetBool("dashing", dashing);
-            } else {
+            } 
+            else {
                 dashing = false;
                 playerAnimator.SetBool("dashing", dashing);
             }
@@ -47,7 +50,7 @@ public class PlayerController : Movement
         }
         // Update dashing variable to false when dash is over
         // Dashing will be true for dash time interval
-        if (Time.time - lastUsed > dashTime){
+        if (dashing && Time.time - lastUsed > dashTime){
             dashing = false;
             playerAnimator.SetBool("dashing", dashing);
         }
@@ -65,6 +68,12 @@ public class PlayerController : Movement
             UpdateMovement(new Vector3(x,y,0).normalized);
         }
 
+    }
+    void PlayDashSound()
+    {
+        if (!playerAudio.isPlaying){
+            playerAudio.PlayOneShot(playerAudio.clip);
+        }
     }
 
     protected override void onCollide(Collider2D col)
