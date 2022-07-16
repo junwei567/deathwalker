@@ -12,10 +12,16 @@ public class PlayerController : Movement
     public float cooldown;
     public float threshold = 0.01f;
     public GameObject enemy;
+    private Animator playerAnimator;
 
     [SerializeField]
     private IntegerSO playerHealthSO;
 
+    protected override void Start()
+    {
+        base.Start();
+        playerAnimator = GetComponent<Animator>();
+    }
     // Update is called once per frame
     protected override void Update()
     {
@@ -23,13 +29,19 @@ public class PlayerController : Movement
         Vector2 crosshairPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         float x = crosshairPos.x - transform.position.x;
         float y = crosshairPos.y - transform.position.y;
-
+        // Update Animator's parameters
+        playerAnimator.SetFloat("xSpeed", Mathf.Abs(x));
+        playerAnimator.SetFloat("ySpeed", Mathf.Abs(y));
         // If player clicks on dash button
         if (Input.GetMouseButtonDown(0)) {
             // If skill is NOT on cooldown
-            if (!(Time.time - lastUsed < cooldown)) {
+            if (Time.time - lastUsed > cooldown) {
                 lastUsed = Time.time;
                 dashing = true;
+                playerAnimator.SetBool("dashing", dashing);
+            } else {
+                dashing = false;
+                playerAnimator.SetBool("dashing", dashing);
             }
             
         }
@@ -37,6 +49,7 @@ public class PlayerController : Movement
         // Dashing will be true for dash time interval
         if (Time.time - lastUsed > dashTime){
             dashing = false;
+            playerAnimator.SetBool("dashing", dashing);
         }
 
         // Stop moving the player if player is close enough to the crosshair    
