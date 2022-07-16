@@ -4,22 +4,23 @@ using UnityEngine;
 
 public class KnightController : Movement
 {
-    public float cooldown = 3.0f;
+    public float cooldown = 1.0f;
     public float lastUsed;
     public GameObject knight;
     public GameObject player;
-    private bool inRange = false;
-    private bool firstLunge = true;
-    private bool lunged = false;
+    private bool lunging = false;
+    private bool inRange;
     public float attackRadius;
     private Animator anim;
     public LayerMask whatIsPlayer;
+    public float dashSpeed = 10.0f;
 
     // Start is called before the first frame update
     protected override void Start()
     {
         base.Start();
         anim = GetComponent<Animator>();
+        lastUsed = Time.time;
     }
 
     // Update is called once per frame
@@ -29,58 +30,41 @@ public class KnightController : Movement
         // Get relative direction to player
         float x = player.transform.position.x - transform.position.x;
         float y = player.transform.position.y - transform.position.y;
-        Vector2 dirToPlayer = new Vector2(x, y).normalized;
         
         inRange = Physics2D.OverlapCircle(transform.position,attackRadius, whatIsPlayer);
-        anim.SetBool("inAttackRange", inRange);
 
         // If player is in shooting range and allowed to shoot
-        if (inRange) {
-            // If first arrow is not shot
-            if (firstLunge) {
-                Debug.Log("Lunge");
-                Lunge();
-            } 
-            else {
-                // If cooldown is over, shoot
-                if (Time.time - lastUsed > cooldown) {
-                    Debug.Log("Lunge");
-                    Lunge(); 
-                }
+        if (inRange && !lunging) {
+            // If cooldown is over, shoot
+            if (Time.time - lastUsed > cooldown) {
+                // Debug.Log("Lunging");
+                lunging = true;
+                anim.SetBool("inAttackRange", inRange);
+                Lunge(x, y); 
             }
         }
         // If player is not in shooting range
-        if (!lunged) {
+        if (!lunging) {
             // Debug.Log(lunged);
             UpdateMovement(new Vector3(x,y,0));
         }
     }
-    void OnTriggerEnter2D(Collider2D col) 
-    {
-        if (col.tag == "Player") {
-            inRange = true;
-        }
-    }
-    void OnTriggerExit2D(Collider2D col)
-    {
-        if (col.tag == "Player") {
-            inRange = false;
-        }
-    }
-    // Wait 1.5 seconds before archer is allowed to shoot when it is spawned
-    IEnumerator countdownToLunge() {
-        if (lunged){
-
-            yield return new WaitForSeconds(2);
-            // Start shooting after waiting for an initial 1.5 seconds
-            lunged = false;
-        }
-    }
-    void Lunge()
+    void Lunge(float target_x,float target_y)
     {   
-        firstLunge = false;
-        lunged = true;
-        StartCoroutine(countdownToLunge());
+        StartCoroutine(countdownToLunge(target_x,target_y));
+    }
+    IEnumerator countdownToLunge(float target_x, float target_y) {
+        yield return new WaitForSeconds(0.5f);
+        anim.SetBool("inAttackRange", false);
+        int step = 0;
+        while (step < 4){
+            UpdateMovement(new Vector3(target_x, target_y, 0).normalized * dashSpeed);
+            Debug.Log(new Vector3(target_x, target_y, 0).normalized * dashSpeed);
+            step += 1;
+        }
+        yield return new WaitForSeconds(0.5f);
+        // Start shooting after waiting for an initial 1.5 seconds
+        lunging = false;
         lastUsed = Time.time;
     }
 }
