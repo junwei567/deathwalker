@@ -78,9 +78,8 @@ public class PlayerController : Movement
 
     protected override void onCollide(Collider2D col)
     {
-        if (!collided && col.name == "SkullEnemy" && dashing) {
-            collided = true;
-            Destroy(enemy);
+        if (col.tag == "Enemy" && dashing) {
+            Destroy(col.gameObject);
         }
     }
 }
