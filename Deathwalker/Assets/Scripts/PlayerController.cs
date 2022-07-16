@@ -8,9 +8,9 @@ public class PlayerController : Movement
     public float dashSpeed = 100.0f;
     private bool dashing = false;
     public float dashTime = 1.5f;
-    public float lastUsed;
+    private float lastUsed;
     public float cooldown;
-    public float threshold = 0.01f;
+    private float threshold = 0.01f;
     public GameObject enemy;
 
     [SerializeField]
@@ -45,12 +45,12 @@ public class PlayerController : Movement
         } 
         // If in dash
         else if (dashing) {
-            Debug.Log("dash");
+            // Debug.Log("dash");
             UpdateMovement(new Vector3(x, y, 0).normalized * dashSpeed);
         } 
         // If out of dash
         else {
-            Debug.Log("normal walking");
+            // Debug.Log("normal walking");
             UpdateMovement(new Vector3(x,y,0).normalized);
         }
 
@@ -58,9 +58,8 @@ public class PlayerController : Movement
 
     protected override void onCollide(Collider2D col)
     {
-        if (!collided && col.name == "SkullEnemy" && dashing) {
-            collided = true;
-            Destroy(enemy);
+        if (col.tag == "Enemy" && dashing) {
+            Destroy(col.gameObject);
         }
     }
 }
