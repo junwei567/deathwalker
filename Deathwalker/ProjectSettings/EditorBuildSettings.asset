@@ -9,6 +9,12 @@ EditorBuildSettings:
     path: Assets/Scenes/Menu.unity
     guid: 5891e080a356c47c89ae6c79fb968911
   - enabled: 1
+    path: Assets/Scenes/IntroAnimation.unity
+    guid: a11c0beed95b842c2b976e4e3d68823e
+  - enabled: 1
+    path: Assets/Scenes/Cutscene-FirstIntro.unity
+    guid: b618d4345f5ff43a399ef1f002a1b16d
+  - enabled: 1
     path: Assets/Scenes/Dungeon1.unity
     guid: bcfdb3717436544a4bd36f48766782a1
   - enabled: 1
