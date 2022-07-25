@@ -196,7 +196,7 @@ TextureImporter:
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -217,7 +217,7 @@ TextureImporter:
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -238,7 +238,7 @@ TextureImporter:
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -246,6 +246,90 @@ TextureImporter:
       bones: []
       spriteID: be2d54bc13a484ca18a36bb47dd5bc51
       internalID: 767235276
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: archer_idle1
+      rect:
+        serializedVersion: 2
+        x: 9
+        y: 516
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8b643280d13914159a24f5f60e01019b
+      internalID: 1253933416
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: archer_idle2
+      rect:
+        serializedVersion: 2
+        x: 39
+        y: 516
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1de0bda4a272d4c75881f8fe71c4f9a0
+      internalID: 1889276257
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: archer_idle3
+      rect:
+        serializedVersion: 2
+        x: 69
+        y: 516
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7312603f2a26a44738ee1f69378d9ca5
+      internalID: -360309075
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: archer_idle4
+      rect:
+        serializedVersion: 2
+        x: 99
+        y: 516
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a3a00b5ba5e644b64a1907c41f394d45
+      internalID: 1112837069
       vertices: []
       indices: 
       edges: []
@@ -266,8 +350,12 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
+      archer_idle4: 1112837069
+      archer_idle3: -360309075
       archer_idle: -1334464485
+      archer_idle1: 1253933416
       archer_atk5: -154057245
+      archer_idle2: 1889276257
       archer_atk2: -929058664
       archer_atk4: -614725170
       archer_atk6: 767235276
