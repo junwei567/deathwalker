@@ -6,6 +6,7 @@ public class KnightController : Movement
 {
     public float cooldown = 1.0f;
     public float lastUsed;
+    public float startTime;
     public GameObject knight;
     public GameObject player;
     private bool lunging = false;
@@ -42,22 +43,34 @@ public class KnightController : Movement
             if (Time.time - lastUsed > cooldown) {
                 Debug.Log("Lunging");
                 lunging = true;
-                anim.SetBool("inAttackRange", inRange);
+                anim.SetBool("inAttackRange", true);
                 target_x = x;
                 target_y = y;
                 // Lunge(x, y); 
             }
         }
         if (lunging){
-            Debug.Log(step);
-            if (step >= 100 && step <= 150){
-                anim.SetBool("inAttackRange", false);
-                UpdateMovement(new Vector3(target_x, target_y, 0).normalized * 7.0f);
+            // Debug.Log(step);
+            if (step == 0){
+                startTime = Time.time;
             }
-            else if (step >= 250){
+            if (step == 100){
+                anim.SetBool("inAttackRange", false);
+                Debug.Log(Time.time - startTime);
+            }
+            if (step == 120){
+                Debug.Log(Time.time - startTime);
+            }
+            if (step >= 100 && step <= 120){
+                UpdateMovement(new Vector3(target_x, target_y, 0).normalized * 10.0f);
+            }
+            if (step == 220){
+                Debug.Log(Time.time - startTime);
+            }
+            if (step >= 220){
                 lunging = false;
                 lastUsed = Time.time;
-                step = 0;
+                step = -1;
             }
             step += 1;
         }
@@ -67,36 +80,5 @@ public class KnightController : Movement
             UpdateMovement(new Vector3(x,y,0).normalized * 0.7f);
         }
     }
-    // void Lunge(float target_x,float target_y)
-    // {   
-    //     // StartCoroutine(countdownToLunge(target_x,target_y));
-    //     anim.SetBool("inAttackRange", false);
-    //     int step = 0;
-    //     while (step < 5){
-    //         UpdateMovement(new Vector3(target_x, target_y, 0).normalized * dashSpeed);
-    //         Debug.Log(new Vector3(target_x, target_y, 0).normalized * dashSpeed);
-    //         step += 1;
-    //         yield return new WaitForSeconds(0.003f);
-    //     }
-    //     yield return new WaitForSeconds(0.25f);
-    //     // Start shooting after waiting for an initial 1.5 seconds
-    //     lunging = false;
-    //     lastUsed = Time.time;
-    // }
-    // IEnumerator countdownToLunge(float target_x, float target_y) {
-    //     yield return new WaitForSeconds(0.25f);
-    //     anim.SetBool("inAttackRange", false);
-    //     int step = 0;
-    //     while (step < 5){
-    //         UpdateMovement(new Vector3(target_x, target_y, 0).normalized * dashSpeed);
-    //         Debug.Log(new Vector3(target_x, target_y, 0).normalized * dashSpeed);
-    //         step += 1;
-    //         yield return new WaitForSeconds(0.003f);
-    //     }
-    //     yield return new WaitForSeconds(0.25f);
-    //     // Start shooting after waiting for an initial 1.5 seconds
-    //     lunging = false;
-    //     lastUsed = Time.time;
-    // }
 }
 
