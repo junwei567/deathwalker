@@ -50,22 +50,11 @@ public class KnightController : Movement
             }
         }
         if (lunging){
-            // Debug.Log(step);
-            if (step == 0){
-                startTime = Time.time;
-            }
             if (step == 100){
                 anim.SetBool("inAttackRange", false);
-                Debug.Log(Time.time - startTime);
-            }
-            if (step == 120){
-                Debug.Log(Time.time - startTime);
             }
             if (step >= 100 && step <= 120){
                 UpdateMovement(new Vector3(target_x, target_y, 0).normalized * 10.0f);
-            }
-            if (step == 220){
-                Debug.Log(Time.time - startTime);
             }
             if (step >= 220){
                 lunging = false;
