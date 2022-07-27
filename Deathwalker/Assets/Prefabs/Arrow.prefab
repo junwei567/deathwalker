@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: -2799021087736036578}
   m_Layer: 0
   m_Name: Arrow
-  m_TagString: Untagged
+  m_TagString: DamageObject
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -99,7 +99,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.013586819, y: 0.013586462}
+  m_Offset: {x: -0.09882206, y: 0.02576299}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -110,7 +110,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.54109323, y: 3.1197872}
+  m_Size: {x: 2.9033265, y: 0.3192018}
   m_EdgeRadius: 0
 --- !u!50 &-2799021087736036578
 Rigidbody2D:

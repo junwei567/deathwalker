@@ -6,7 +6,7 @@ public class WizardController : Movement
 {
     public float cooldown = 3.0f;
     public float lastUsed;
-    public GameObject player;
+    private GameObject player;
     public GameObject spellPrefab;
     private bool startCasting = false;
     private bool firstSpellCasted = false;
@@ -19,6 +19,7 @@ public class WizardController : Movement
         base.Start();
         StartCoroutine(countdownToCast());
         wizardAnimator = GetComponent<Animator>();
+        player = GameObject.Find("Player");
     }
 
     // Update is called once per frame

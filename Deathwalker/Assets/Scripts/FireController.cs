@@ -34,8 +34,9 @@ public class FireController : MonoBehaviour
         yield return new WaitForSeconds(2.0f);
         // Start the end fire animation
         fireAnimator.SetBool("spellOver", true);
-        // Destroy fire after 0.32 seconds of fire end animation
-        Destroy(this.gameObject, 0.32f);
+        // Destroy fire after 1.1 seconds of fire end animation
+        // Destroy(this.gameObject, 1.1f);
+        Destroy(transform.parent.gameObject, 1.1f);
     }
 
     // Update is called once per frame

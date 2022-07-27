@@ -6,6 +6,9 @@ TagManager:
   tags:
   - Box
   - Enemy
+  - DamageObject
+  - DamageObjects
+  - Spell
   layers:
   - Default
   - TransparentFX
@@ -40,6 +43,9 @@ TagManager:
   - 
   - 
   m_SortingLayers:
+  - name: Hidden
+    uniqueID: 1946984733
+    locked: 0
   - name: Floor
     uniqueID: 2805479683
     locked: 0

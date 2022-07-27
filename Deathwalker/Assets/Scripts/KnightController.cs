@@ -59,7 +59,7 @@ public class KnightController : Movement
         int step = 0;
         while (step < 4){
             UpdateMovement(new Vector3(target_x, target_y, 0).normalized * dashSpeed);
-            Debug.Log(new Vector3(target_x, target_y, 0).normalized * dashSpeed);
+            // Debug.Log(new Vector3(target_x, target_y, 0).normalized * dashSpeed);
             step += 1;
         }
         yield return new WaitForSeconds(0.5f);

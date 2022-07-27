@@ -6,8 +6,11 @@ public class ValueResetter : MonoBehaviour
 {
     [SerializeField]
     private IntegerSO playerHealthSO;
+    [SerializeField]
+    private IntegerSO playerLivesSO;
     void Awake() {
-        playerHealthSO.Value = 4;
+        playerHealthSO.Value = 3;
+        playerLivesSO.Value = 3;
     }
     // Start is called before the first frame update
     void Start()

@@ -2,17 +2,17 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Arrow : MonoBehaviour
+public class Arrow : Collidable
 {
-    // Start is called before the first frame update
-    void Start()
+    [SerializeField]
+    private IntegerSO playerHealthSO;
+    protected override void onCollide(Collider2D col)
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        if (!collided && col.name == "Player") {
+            collided = true;
+            // Decrease player health
+            playerHealthSO.Value--;
+            // GameManager.instance.displayHealth();
+        }
     }
 }
