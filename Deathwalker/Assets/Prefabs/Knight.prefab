@@ -161,6 +161,7 @@ MonoBehaviour:
     maxNormalAngle: 0
   cooldown: 3
   lastUsed: 0
+  startTime: 0
   knight: {fileID: 8890790428679051305}
   player: {fileID: 0}
   attackRadius: 0.5
