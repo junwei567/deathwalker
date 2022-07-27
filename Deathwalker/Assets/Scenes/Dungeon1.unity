@@ -1182,6 +1182,14 @@ PrefabInstance:
       value: Player
       objectReference: {fileID: 0}
     - target: {fileID: 1057229450246414061, guid: c7405e75bddc841308f25bc6473e0714, type: 3}
+      propertyPath: dashTime
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1057229450246414061, guid: c7405e75bddc841308f25bc6473e0714, type: 3}
+      propertyPath: dashSpeed
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 1057229450246414061, guid: c7405e75bddc841308f25bc6473e0714, type: 3}
       propertyPath: doubleDash
       value: 0
       objectReference: {fileID: 0}
