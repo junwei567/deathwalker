@@ -9,6 +9,7 @@ TagManager:
   - DamageObject
   - DamageObjects
   - Spell
+  - Skeleton
   layers:
   - Default
   - TransparentFX

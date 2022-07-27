@@ -13,10 +13,12 @@ public class PlayerController : Movement
     public float threshold = 0.01f;
     public float immuneTime = 2.0f;
     public bool doubleDash = false;
+    // private bool dead;
     private int dashCount = 0;
     private Animator playerAnimator;
     private AudioSource playerAudio;
     private SpriteRenderer playerRenderer;
+    private SkeletonController skeletonController;
 
     [SerializeField]
     private IntegerSO playerHealthSO;
@@ -135,13 +137,18 @@ public class PlayerController : Movement
             if (col.tag == "Enemy") {
                 col.gameObject.SetActive(false);
             }
+            else if (col.tag == "Skeleton") {
+                // Debug.Log(col.gameObject.GetComponent(dead));
+                skeletonController = col.gameObject.GetComponent<SkeletonController>();
+                skeletonController.dying = true;
+            }
         } 
         // =============
         // NOT DASHING
         // =============
         else {
             // Decrease player health upon enemy or damage object (e.g arrow) collision 
-            if ((col.tag == "Enemy" || col.tag == "DamageObject") && !collided) {
+            if ((col.tag == "Enemy" || col.tag == "DamageObject" || col.tag == "Skeleton") && !collided) {
                 TakeDamage();
             }
             // Special condition for collision with spell

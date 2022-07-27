@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 6494542914642006162}
   m_Layer: 0
   m_Name: Skeleton
-  m_TagString: Enemy
+  m_TagString: Skeleton
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -138,7 +138,6 @@ MonoBehaviour:
   startTime: 0
   reviveTimer: 0
   skeleton: {fileID: 6494542914642006157}
-  player: {fileID: 0}
   attackRadius: 0.3
   whatIsPlayer:
     serializedVersion: 2

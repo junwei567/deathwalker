@@ -12,13 +12,16 @@ public class SkeletonController : Movement
     private GameObject player;
     private bool attack;
     private bool inRange;
-    private bool dead = false;
+    private bool revive;
+    public bool dying = false;
+    public bool alive = true;
     public float attackRadius = 3.0f;
     private Animator anim;
     public LayerMask whatIsPlayer;
     public float dashSpeed = 1.2f;
-    public float reviveTimeout = 5.0f;
-    private int counter = 0;
+    public float reviveTimeout = 8.0f;
+    public float deadTime;
+    // private int counter = 0;
     private int deadlock_counter = 0;
     private float target_x;
     private float target_y;
@@ -30,6 +33,7 @@ public class SkeletonController : Movement
         player = GameObject.Find("Player");
         anim = GetComponent<Animator>();
         lastUsed = Time.time;
+        deadTime = Time.time;
         attack = false;
         anim.SetBool("inRange", false);
         anim.SetBool("isDead", false);
@@ -47,7 +51,8 @@ public class SkeletonController : Movement
         inRange = Physics2D.OverlapCircle(transform.position,attackRadius, whatIsPlayer);
 
         // If player is in shooting range and allowed to shoot
-        if (inRange && !attack && !dead) {
+        if (inRange && !attack && alive) {
+            // Debug.Log("atking");
             // If cooldown is over, shoot
             if (Time.time - lastUsed > cooldown) {
                 attack = true;
@@ -57,6 +62,7 @@ public class SkeletonController : Movement
 
         // resolving skeleton deadlock
         if(attack){
+            // Debug.Log("atking check");
             deadlock_counter += 1;
             if (deadlock_counter > 3000){
                 attack = false;
@@ -67,47 +73,62 @@ public class SkeletonController : Movement
             deadlock_counter = 0;
         }
 
-        if (!skeleton.activeInHierarchy){
-            Debug.Log("dead");
-        }
+        // // trying out death animation
+        // if (!dead){
+        //     if (counter >= 10000 && !attack){
+        //         dead = true;
+        //         counter = 0;
+        //         StartCoroutine(deadCoroutine());
+        //     }
+        //     counter +=1;
+        // }
 
-        // trying out death animation
-        if (!dead){
-            if (counter >= 10000 && !attack){
-                dead = true;
-                counter = 0;
+        if (dying){
+            Debug.Log("hit");
+            attack = false;
+            dying = false;
+            // can only die earliest 8 seconds after latest death
+            if (Time.time - deadTime > reviveTimeout && alive){
+                alive = false;
+                anim.SetBool("inRange", false);
+                anim.SetBool("dying", true);
+                anim.SetBool("isDead", true);
+                Debug.Log("dying");
                 StartCoroutine(deadCoroutine());
+                deadTime = Time.time;
             }
-            counter +=1;
         }
 
         // If player is not in shooting range
-        if (!attack && !dead) {
+        if (!attack && alive) {
+            // Debug.Log("moving");
             UpdateMovement(new Vector3(x,y,0).normalized * 0.3f);
         }
     }
     IEnumerator attackCoroutine() {
-        anim.SetBool("inRange", true);
-        yield return new WaitForSeconds(2);
-        anim.SetBool("inRange", false);
-        attack = false;
-        lastUsed = Time.time;
+        if (attack){
+            anim.SetBool("inRange", true);
+            yield return new WaitForSeconds(2);
+            anim.SetBool("inRange", false);
+            attack = false;
+            lastUsed = Time.time;
+        }
     }
     
     // if enemy dead
     IEnumerator deadCoroutine() {
-        anim.SetBool("isDead", true);
         yield return new WaitForSeconds(2);
         StartCoroutine(reviveCoroutine());
     }
 
     // revive enemy after timeout
     IEnumerator reviveCoroutine() {
+        anim.SetBool("dying", false);
+        anim.SetBool("isDead", false);
         anim.SetBool("timeout", true);
         yield return new WaitForSeconds(3);
         anim.SetBool("timeout", false);
-        anim.SetBool("isDead", false);
-        dead = false;
+        alive = true;
     }
 }
 
