@@ -54,7 +54,7 @@ public class KnightController : Movement
                 anim.SetBool("inAttackRange", false);
             }
             if (step >= 100 && step <= 120){
-                UpdateMovement(new Vector3(target_x, target_y, 0).normalized * 10.0f);
+                UpdateMovement(new Vector3(target_x, target_y, 0).normalized * 5.0f);
             }
             if (step >= 220){
                 lunging = false;
