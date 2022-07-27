@@ -8,7 +8,6 @@ public class SpawnManager : MonoBehaviour
 
     void  spawnFromPooler(ObjectType i){
         // static method access
-        Debug.Log(i);
         GameObject item =  ObjectPooler.SharedInstance.GetPooledObject(i);
         if (item  !=  null){
             // x offmap bounds: -1.4, 1.4
