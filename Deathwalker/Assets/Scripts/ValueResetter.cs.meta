@@ -3,7 +3,9 @@ guid: 77c291b5013c54f22a7632188b811618
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - playerHealthSO: {fileID: 11400000, guid: 2b416af756e71484c9ac5a175ebfb8dc, type: 2}
+  - playerLivesSO: {fileID: 11400000, guid: 05abdf5dee11643c5960dbb44ef4a5d9, type: 2}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 
