@@ -84,7 +84,7 @@ public class SkeletonController : Movement
         // }
 
         if (dying){
-            Debug.Log("hit");
+            // Debug.Log("hit");
             attack = false;
             dying = false;
             // can only die earliest 8 seconds after latest death
@@ -93,7 +93,7 @@ public class SkeletonController : Movement
                 anim.SetBool("inRange", false);
                 anim.SetBool("dying", true);
                 anim.SetBool("isDead", true);
-                Debug.Log("dying");
+                // Debug.Log("dying");
                 StartCoroutine(deadCoroutine());
                 deadTime = Time.time;
             }
