@@ -16,9 +16,9 @@ public class Movement : Collidable
 
         // Swap sprite direction
         if (moveDelta.x > 0) {
-            transform.localScale = Vector3.one;
+            transform.localScale = new Vector3(0.8f, 0.8f, 1);
         } else if (moveDelta.x < 0) {
-            transform.localScale = new Vector3(-1, 1, 1);
+            transform.localScale = new Vector3(-0.8f, 0.8f, 1);
         }
 
         // A BoxCast is conceptually like dragging a box through the Scene in a particular direction. Any object making contact with the box can be detected and reported.

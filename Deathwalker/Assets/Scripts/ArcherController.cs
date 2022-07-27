@@ -7,7 +7,7 @@ public class ArcherController : Movement
     public float cooldown = 2.0f;
     public float lastUsed;
     public float arrowSpeed = 4.0f;
-    public GameObject player;
+    private GameObject player;
     public GameObject arrowPrefab;
     private bool startShooting = false;
     private bool firstShotFired = false;
@@ -20,6 +20,7 @@ public class ArcherController : Movement
         base.Start();
         StartCoroutine(countdownToShoot());
         archerAnimator = GetComponent<Animator>();
+        player = GameObject.Find("Player");
     }
 
     // Update is called once per frame

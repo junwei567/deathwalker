@@ -7,6 +7,8 @@ using UnityEngine.SceneManagement;
 public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
+    public GameObject playerObject;
+    private PlayerController playerController;
     public int collisions = 0;
     public FloatingTextManager floatingTextManager;
     public int Collisions
@@ -22,6 +24,8 @@ public class GameManager : MonoBehaviour
     public Image heart4;
     [SerializeField]
     private IntegerSO playerHealthSO;
+    [SerializeField]
+    private IntegerSO playerLivesSO;
     void Awake()
     {
         // Prevent creation of multiple GameManager instances
@@ -56,53 +60,67 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        displayHealth();
+        displayHealth(playerHealthSO.Value);
+        playerController = playerObject.GetComponent<PlayerController>();
     }
 
     // Update is called once per frame
     void Update()
     {
         // testing Health
-        if (Input.GetKeyDown(KeyCode.Backspace)) {
-            if (playerHealthSO.Value > 1) {
-                playerHealthSO.Value--;
-                displayHealth();
-            }
+        // if (Input.GetKeyDown(KeyCode.Backspace)) {
+        //     if (playerHealthSO.Value > 1) {
+        //         playerHealthSO.Value--;
+        //         displayHealth();
+        //     }
+        // }
+        // if (Input.GetKeyDown(KeyCode.Tab)) {
+        //     if (playerHealthSO.Value < 4) {
+        //         playerHealthSO.Value++;
+        //         displayHealth();
+        //     }
+        // }
+    }
+    void startOver(int livesLeft) {
+        if (livesLeft == 2) {
+            displayHealth(2);
+            playerHealthSO.Value = 2;
         }
-        if (Input.GetKeyDown(KeyCode.Tab)) {
-            if (playerHealthSO.Value < 4) {
-                playerHealthSO.Value++;
-                displayHealth();
-            }
+        if (livesLeft == 1) {
+            displayHealth(1);
+            playerHealthSO.Value = 1;
         }
     }
 
-    private void displayHealth() {
-        playerHealth.text = "Health: " + playerHealthSO.Value;
+    public void displayHealth(int health) {
+        playerHealth.text = "Health: " + health;
         // TODO BIG ASSUMPTION: every attack only reduce player health by 1
-        if (playerHealthSO.Value == 4) {
-            heart4.gameObject.SetActive(true);
+       
+        if (health == 3) {
             heart3.gameObject.SetActive(true);
             heart2.gameObject.SetActive(true);
             heart1.gameObject.SetActive(true);
         }
-        if (playerHealthSO.Value == 3) {
-            heart4.gameObject.SetActive(false);
-            heart3.gameObject.SetActive(true);
-            heart2.gameObject.SetActive(true);
-            heart1.gameObject.SetActive(true);
-        }
-        if (playerHealthSO.Value == 2) {
-            heart4.gameObject.SetActive(false);
+        if (health == 2) {
             heart3.gameObject.SetActive(false);
             heart2.gameObject.SetActive(true);
             heart1.gameObject.SetActive(true);
         }
-        if (playerHealthSO.Value == 1) {
-            heart4.gameObject.SetActive(false);
+        if (health == 1) {
             heart3.gameObject.SetActive(false);
             heart2.gameObject.SetActive(false);
             heart1.gameObject.SetActive(true);
+        }
+        if (health == 0) {
+            // If player still has lives remaining
+            if (playerLivesSO.Value > 1) {
+                playerLivesSO.Value--;
+                startOver(playerLivesSO.Value);
+            } 
+            // Game Over
+            else {
+                Debug.Log("No lives left");
+            }
         }
     }
 }

@@ -4,13 +4,13 @@ using UnityEngine;
 
 public class CameraController : MonoBehaviour
 {
-    public Transform player;
+    private Transform player;
     public float boundX = 0.15f;
     public float boundY = 0.05f;
     // Start is called before the first frame update
     void Start()
     {
-        
+        player = GameObject.Find("Player").transform;
     }
 
     void LateUpdate()
