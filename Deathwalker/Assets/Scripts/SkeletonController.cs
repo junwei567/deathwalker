@@ -9,17 +9,17 @@ public class SkeletonController : Movement
     public float startTime;
     public float reviveTimer;
     public GameObject skeleton;
-    public GameObject player;
-    private bool attack = false;
+    private GameObject player;
+    private bool attack;
     private bool inRange;
     private bool dead = false;
-    private bool revive = false;
     public float attackRadius = 3.0f;
     private Animator anim;
     public LayerMask whatIsPlayer;
     public float dashSpeed = 1.2f;
     public float reviveTimeout = 5.0f;
     private int counter = 0;
+    private int deadlock_counter = 0;
     private float target_x;
     private float target_y;
 
@@ -27,8 +27,10 @@ public class SkeletonController : Movement
     protected override void Start()
     {
         base.Start();
+        player = GameObject.Find("Player");
         anim = GetComponent<Animator>();
         lastUsed = Time.time;
+        attack = false;
         anim.SetBool("inRange", false);
         anim.SetBool("isDead", false);
         anim.SetBool("timeout", false);
@@ -48,16 +50,30 @@ public class SkeletonController : Movement
         if (inRange && !attack && !dead) {
             // If cooldown is over, shoot
             if (Time.time - lastUsed > cooldown) {
-                Debug.Log("Attack");
                 attack = true;
                 StartCoroutine(attackCoroutine());
             }
         }
 
+        // resolving skeleton deadlock
+        if(attack){
+            deadlock_counter += 1;
+            if (deadlock_counter > 3000){
+                attack = false;
+                deadlock_counter = 0;
+            }
+        }
+        else{
+            deadlock_counter = 0;
+        }
+
+        if (!skeleton.activeInHierarchy){
+            Debug.Log("dead");
+        }
+
         // trying out death animation
         if (!dead){
-            if (counter >=2000 && !attack){
-                Debug.Log("revive timer");
+            if (counter >= 10000 && !attack){
                 dead = true;
                 counter = 0;
                 StartCoroutine(deadCoroutine());
@@ -72,9 +88,7 @@ public class SkeletonController : Movement
     }
     IEnumerator attackCoroutine() {
         anim.SetBool("inRange", true);
-        Debug.Log("wait 2 secs");
         yield return new WaitForSeconds(2);
-        Debug.Log("finish waiting 2 secs");
         anim.SetBool("inRange", false);
         attack = false;
         lastUsed = Time.time;
@@ -82,21 +96,15 @@ public class SkeletonController : Movement
     
     // if enemy dead
     IEnumerator deadCoroutine() {
-        Debug.Log("dead");
         anim.SetBool("isDead", true);
-        Debug.Log("wait 10 secs");
-        yield return new WaitForSeconds(10);
-        Debug.Log("finish waiting 10 secs");
+        yield return new WaitForSeconds(2);
         StartCoroutine(reviveCoroutine());
     }
 
     // revive enemy after timeout
     IEnumerator reviveCoroutine() {
-        Debug.Log("revive");
         anim.SetBool("timeout", true);
-        Debug.Log("wait 3 secs");
         yield return new WaitForSeconds(3);
-        Debug.Log("finish waiting 3 secs");
         anim.SetBool("timeout", false);
         anim.SetBool("isDead", false);
         dead = false;

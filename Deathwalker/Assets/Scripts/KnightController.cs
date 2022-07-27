@@ -8,7 +8,7 @@ public class KnightController : Movement
     public float lastUsed;
     public float startTime;
     public GameObject knight;
-    public GameObject player;
+    private GameObject player;
     private bool lunging = false;
     private bool inRange;
     public float attackRadius;
@@ -23,6 +23,7 @@ public class KnightController : Movement
     protected override void Start()
     {
         base.Start();
+        player = GameObject.Find("Player");
         anim = GetComponent<Animator>();
         lastUsed = Time.time;
     }
@@ -41,7 +42,6 @@ public class KnightController : Movement
         if (inRange && !lunging) {
             // If cooldown is over, shoot
             if (Time.time - lastUsed > cooldown) {
-                Debug.Log("Lunging");
                 lunging = true;
                 anim.SetBool("inAttackRange", true);
                 target_x = x;
@@ -65,7 +65,6 @@ public class KnightController : Movement
         }
         // If player is not in shooting range
         if (!lunging) {
-            // Debug.Log(lunged);
             UpdateMovement(new Vector3(x,y,0).normalized * 0.7f);
         }
     }

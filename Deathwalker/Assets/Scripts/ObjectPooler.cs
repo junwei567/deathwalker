@@ -5,7 +5,9 @@ using UnityEngine;
 
 public enum ObjectType {
     archer =  0,
-    wizard =  1
+    wizard =  1,
+    knight =  2,
+    skeleton =  3
 }
 
 public class ObjectPooler : MonoBehaviour

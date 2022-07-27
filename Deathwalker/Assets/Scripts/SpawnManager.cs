@@ -5,6 +5,7 @@ using UnityEngine;
 public class SpawnManager : MonoBehaviour
 {
     public static SpawnManager SharedInstance;
+    private float enemy_type;
 
     void  spawnFromPooler(ObjectType i){
         // static method access
@@ -30,11 +31,10 @@ public class SpawnManager : MonoBehaviour
     void spawnMobs(int stage)
     {
         if (stage == 1) {
-            // for (int j = 0; j < 20; j++) {
-            //     spawnFromPooler(ObjectType.archer);
-            //     spawnFromPooler(ObjectType.wizard);
-            // }
             StartCoroutine(stage1Mobs());
+        }
+        if (stage == 2) {
+            StartCoroutine(stage1MeleeMobs());
         }
     }
     IEnumerator stage1Mobs()
@@ -52,6 +52,21 @@ public class SpawnManager : MonoBehaviour
         yield return null;
 
     }
+    IEnumerator stage1MeleeMobs()
+    {
+        int counter = 0;
+        while (counter < 20) {
+            enemy_type = Random.Range(0.0f, 1.0f);
+            if (enemy_type >= 0.8f) {
+                spawnFromPooler(ObjectType.skeleton);
+            } else {
+                spawnFromPooler(ObjectType.knight);
+            }
+            counter++;
+            yield return new WaitForSeconds(1.5f);
+        }
+        yield return null;
+    }
     void Awake()
     {
         SharedInstance = this;
@@ -59,7 +74,7 @@ public class SpawnManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        spawnMobs(1);
+        spawnMobs(2);
     }
 
     // Update is called once per frame
