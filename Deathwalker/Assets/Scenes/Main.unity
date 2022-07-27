@@ -1701,11 +1701,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 1057229450246413843, guid: c7405e75bddc841308f25bc6473e0714, type: 3}
   m_PrefabInstance: {fileID: 1206524562}
   m_PrefabAsset: {fileID: 0}
---- !u!4 &1150379722 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 1057229450246414063, guid: c7405e75bddc841308f25bc6473e0714, type: 3}
-  m_PrefabInstance: {fileID: 1206524562}
-  m_PrefabAsset: {fileID: 0}
 --- !u!50 &1150379723
 Rigidbody2D:
   serializedVersion: 4
@@ -1831,6 +1826,10 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 1057229450246414061, guid: c7405e75bddc841308f25bc6473e0714, type: 3}
+      propertyPath: doubleDash
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1057229450246414062, guid: c7405e75bddc841308f25bc6473e0714, type: 3}
       propertyPath: m_Enabled
       value: 1
@@ -1910,6 +1909,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: af2ae23a444a04433bee1937c57fe3ef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerObject: {fileID: 0}
   collisions: 0
   floatingTextManager: {fileID: 1530620997}
   playerHealth: {fileID: 411006492}
@@ -2243,7 +2243,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: adf45882c5f7c49bfbad17060575365e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 1150379722}
   boundX: 0.5
   boundY: 0.5
 --- !u!1 &1883602582
@@ -2455,6 +2454,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerHealthSO: {fileID: 11400000, guid: 2b416af756e71484c9ac5a175ebfb8dc, type: 2}
+  playerLivesSO: {fileID: 0}
 --- !u!1 &2010093343
 GameObject:
   m_ObjectHideFlags: 0
