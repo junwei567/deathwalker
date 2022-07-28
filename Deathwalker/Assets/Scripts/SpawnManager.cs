@@ -9,7 +9,6 @@ public class SpawnManager : MonoBehaviour
 
     void  spawnFromPooler(ObjectType i){
         // static method access
-        Debug.Log(i);
         GameObject item =  ObjectPooler.SharedInstance.GetPooledObject(i);
         if (item  !=  null){
             // x offmap bounds: -1.4, 1.4
@@ -42,9 +41,11 @@ public class SpawnManager : MonoBehaviour
         int counter = 0;
         while (counter < 20) {
             if (counter % 2 == 0) {
-                spawnFromPooler(ObjectType.archer);
+                // spawnFromPooler(ObjectType.archer);
+                spawnFromPooler(ObjectType.skeleton);
             } else {
-                spawnFromPooler(ObjectType.wizard);
+                // spawnFromPooler(ObjectType.wizard);
+                spawnFromPooler(ObjectType.knight);
             }
             counter++;
             yield return new WaitForSeconds(1.5f);
@@ -74,7 +75,7 @@ public class SpawnManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        spawnMobs(2);
+        spawnMobs(1);
     }
 
     // Update is called once per frame

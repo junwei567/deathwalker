@@ -5,9 +5,9 @@ using UnityEngine;
 
 public class PlayerController : Movement
 {
-    public float dashSpeed = 100.0f;
+    public float dashSpeed = 2.0f;
     private bool dashing = false;
-    public float dashTime = 0.1f;
+    public float dashTime = 0.3f;
     public float lastUsed;
     public float cooldown = 1.0f;
     public float threshold = 0.01f;
@@ -44,16 +44,20 @@ public class PlayerController : Movement
         if (Input.GetMouseButtonDown(0)) {
             // DOUBLE DASH ACTIVATED and not currently dashing
             if (doubleDash && !dashing) {
-                // Add to dash counter
-                dashCount++;
-                Debug.Log(dashCount);
-                dashing = true;
-                playerAnimator.SetBool("dashing", dashing);
-                // Add cooldown since player already dashed twice
-                if (dashCount == 2) {
-                   lastUsed = Time.time;
-                   // Reset dash count
-                   dashCount = 0;
+
+                if (dashCount == 0) {
+                    // Add to dash counter
+                    lastUsed = Time.time;
+                    dashCount++;
+                    dashing = true;
+                    playerAnimator.SetBool("dashing", dashing);
+                }
+                else if (dashCount == 1) {
+                    // Add to dash counter
+                    lastUsed = Time.time;
+                    dashCount++;
+                    dashing = true;
+                    playerAnimator.SetBool("dashing", dashing);
                 }
             } 
             // NO DOUBLE DASH
@@ -70,6 +74,11 @@ public class PlayerController : Movement
             //     playerAnimator.SetBool("dashing", dashing);
             // }
             
+        }
+        if (dashCount == 2) {
+            if (Time.time - lastUsed > cooldown) {
+                dashCount = 0;
+            }
         }
         // Update dashing variable to false when dash is over
         // Dashing will be true for dash time interval
@@ -92,12 +101,14 @@ public class PlayerController : Movement
         }
 
     }
-    void activateLongDash()
+    public void activateLongDash()
     {
-        dashSpeed = 150.0f;
+        Debug.Log("long dash activated");
+        dashSpeed = 3.0f;
     }
-    void activateDoubleDash()
+    public void activateDoubleDash()
     {
+        Debug.Log("double dash activated");
         doubleDash = true;
     }
     void PlayDashSound()

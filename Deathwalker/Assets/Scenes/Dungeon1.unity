@@ -2633,6 +2633,12 @@ MonoBehaviour:
   - amount: 5
     prefab: {fileID: 4207117401531901800, guid: b949e5af929c84e40814bac0b7e7c9f6, type: 3}
     type: 1
+  - amount: 5
+    prefab: {fileID: 8890790428679051305, guid: 0ae3d19585b0bcc4b982e83fd564f342, type: 3}
+    type: 2
+  - amount: 5
+    prefab: {fileID: 6494542914642006157, guid: 6fedb071e1a70f34f8eeda06cb15bb30, type: 3}
+    type: 3
 --- !u!4 &1292075234
 Transform:
   m_ObjectHideFlags: 0
@@ -2955,11 +2961,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1057229450246414061, guid: c7405e75bddc841308f25bc6473e0714, type: 3}
       propertyPath: dashTime
-      value: 0.1
+      value: 0.2
       objectReference: {fileID: 0}
     - target: {fileID: 1057229450246414061, guid: c7405e75bddc841308f25bc6473e0714, type: 3}
       propertyPath: dashSpeed
-      value: 4
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 1057229450246414061, guid: c7405e75bddc841308f25bc6473e0714, type: 3}
       propertyPath: doubleDash

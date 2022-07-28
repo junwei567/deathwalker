@@ -85,10 +85,12 @@ public class GameManager : MonoBehaviour
         if (livesLeft == 2) {
             displayHealth(2);
             playerHealthSO.Value = 2;
+            playerController.activateLongDash();
         }
         if (livesLeft == 1) {
             displayHealth(1);
             playerHealthSO.Value = 1;
+            playerController.activateDoubleDash();
         }
     }
 
