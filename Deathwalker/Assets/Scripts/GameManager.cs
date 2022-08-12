@@ -8,7 +8,7 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
     public GameObject playerObject;
-    private PlayerController playerController;
+    public PlayerController playerController;
     public int collisions = 0;
     public FloatingTextManager floatingTextManager;
     public int Collisions
@@ -23,7 +23,7 @@ public class GameManager : MonoBehaviour
     public Image heart3;
     public Image heart4;
     [SerializeField]
-    private IntegerSO playerHealthSO;
+    public IntegerSO playerHealthSO;
     [SerializeField]
     private IntegerSO playerLivesSO;
     void Awake()
