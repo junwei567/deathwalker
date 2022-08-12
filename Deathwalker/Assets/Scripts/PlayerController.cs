@@ -21,7 +21,7 @@ public class PlayerController : Movement
     private SkeletonController skeletonController;
 
     [SerializeField]
-    private IntegerSO playerHealthSO;
+    public IntegerSO playerHealthSO;
  
     protected override void Start()
     {
@@ -117,7 +117,7 @@ public class PlayerController : Movement
             playerAudio.PlayOneShot(playerAudio.clip);
         }
     }
-    void TakeDamage()
+    public void TakeDamage()
     {
         collided = true;
         playerHealthSO.Value--;
