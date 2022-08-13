@@ -5,9 +5,9 @@ using UnityEngine;
 
 public class PlayerController : Movement
 {
-    public float dashSpeed = 100.0f;
+    public float dashSpeed = 2.0f;
     private bool dashing = false;
-    public float dashTime = 0.1f;
+    public float dashTime = 0.3f;
     public float lastUsed;
     public float cooldown = 1.0f;
     public float threshold = 0.01f;
@@ -29,7 +29,7 @@ public class PlayerController : Movement
     public GameObject bloodPool4;
 
     [SerializeField]
-    private IntegerSO playerHealthSO;
+    public IntegerSO playerHealthSO;
  
     protected override void Start()
     {
@@ -86,6 +86,11 @@ public class PlayerController : Movement
             // }
             
         }
+        if (dashCount == 2) {
+            if (Time.time - lastUsed > cooldown) {
+                dashCount = 0;
+            }
+        }
         // Update dashing variable to false when dash is over
         // Dashing will be true for dash time interval
         if (dashing && Time.time - lastUsed > dashTime){
@@ -107,12 +112,14 @@ public class PlayerController : Movement
         }
 
     }
-    void activateLongDash()
+    public void activateLongDash()
     {
-        dashSpeed = 150.0f;
+        Debug.Log("long dash activated");
+        dashSpeed = 3.0f;
     }
-    void activateDoubleDash()
+    public void activateDoubleDash()
     {
+        Debug.Log("double dash activated");
         doubleDash = true;
     }
     void PlayDashSound()
@@ -121,7 +128,7 @@ public class PlayerController : Movement
             playerAudio.PlayOneShot(playerAudio.clip);
         }
     }
-    void TakeDamage()
+    public void TakeDamage()
     {
         collided = true;
         playerHealthSO.Value--;

@@ -8,7 +8,7 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
     public GameObject playerObject;
-    private PlayerController playerController;
+    public PlayerController playerController;
     public int collisions = 0;
     public FloatingTextManager floatingTextManager;
     public int Collisions
@@ -16,14 +16,14 @@ public class GameManager : MonoBehaviour
         get { return collisions; }
         set { collisions = value; }
     }
-
+    public GameObject UIObject;
     public Text playerHealth;
     public Image heart1;
     public Image heart2;
     public Image heart3;
     public Image heart4;
     [SerializeField]
-    private IntegerSO playerHealthSO;
+    public IntegerSO playerHealthSO;
     [SerializeField]
     private IntegerSO playerLivesSO;
     void Awake()
@@ -51,45 +51,45 @@ public class GameManager : MonoBehaviour
     }
     public void LoadState(Scene scene, LoadSceneMode mode)
     {
+        if (scene.name == "Dungeon1") {
+            Debug.Log("Start fight scene called");
+            startFightScene();
+        }
         if (!PlayerPrefs.HasKey("State")) {
             return;
         }
         string state = PlayerPrefs.GetString("State");
         collisions = int.Parse(state);
     }
-    // Start is called before the first frame update
-    void Start()
-    {
-        displayHealth(playerHealthSO.Value);
-        playerController = playerObject.GetComponent<PlayerController>();
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        // testing Health
-        // if (Input.GetKeyDown(KeyCode.Backspace)) {
-        //     if (playerHealthSO.Value > 1) {
-        //         playerHealthSO.Value--;
-        //         displayHealth();
-        //     }
-        // }
-        // if (Input.GetKeyDown(KeyCode.Tab)) {
-        //     if (playerHealthSO.Value < 4) {
-        //         playerHealthSO.Value++;
-        //         displayHealth();
-        //     }
-        // }
-    }
+    
     void startOver(int livesLeft) {
         if (livesLeft == 2) {
             displayHealth(2);
             playerHealthSO.Value = 2;
+            UIObject.SetActive(false);
+            SceneManager.LoadScene("Cutscene-DeathNumbaOne");
         }
         if (livesLeft == 1) {
             displayHealth(1);
             playerHealthSO.Value = 1;
+            playerController.activateDoubleDash();
+            UIObject.SetActive(false);
+            SceneManager.LoadScene("Cutscene-DeathNumbaOne");
         }
+    }
+
+    void startFightScene() {
+        UIObject.SetActive(true);
+        playerObject = GameObject.Find("Player");
+        playerController = playerObject.GetComponent<PlayerController>();
+        // Activate player's power ups
+        if (playerHealthSO.Value == 2) {
+            playerController.activateLongDash();    
+        }
+        else if (playerHealthSO.Value == 1) {
+            playerController.activateDoubleDash();
+        }
+        displayHealth(playerHealthSO.Value);
     }
 
     public void displayHealth(int health) {
