@@ -21,7 +21,7 @@ public class GameManager : MonoBehaviour
     public Image heart1;
     public Image heart2;
     public Image heart3;
-    public Image heart4;
+
     [SerializeField]
     public IntegerSO playerHealthSO;
     [SerializeField]
@@ -114,6 +114,7 @@ public class GameManager : MonoBehaviour
         if (health == 0) {
             // If player still has lives remaining
             if (playerLivesSO.Value > 1) {
+                Debug.Log("Lives decreased");
                 playerLivesSO.Value--;
                 startOver(playerLivesSO.Value);
             } 
