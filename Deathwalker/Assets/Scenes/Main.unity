@@ -1392,7 +1392,7 @@ Animator:
   m_GameObject: {fileID: 535824076}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: b0acb7da3d4a45b4a927f92034fa9f44, type: 2}
+  m_Controller: {fileID: 9100000, guid: 9a1f1850eabff7e4eaffe1cafc03cb6a, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -1980,8 +1980,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerObject: {fileID: 1057229450246413843, guid: c7405e75bddc841308f25bc6473e0714, type: 3}
+  playerController: {fileID: 0}
   collisions: 0
   floatingTextManager: {fileID: 1530620997}
+  UIObject: {fileID: 0}
   playerHealth: {fileID: 411006492}
   heart1: {fileID: 287033033}
   heart2: {fileID: 1387766624}

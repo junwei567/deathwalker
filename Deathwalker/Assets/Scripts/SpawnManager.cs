@@ -16,8 +16,8 @@ public class SpawnManager : MonoBehaviour
             // xRand will determine if enemy spawns from left or right side
             int xRand = Random.Range(0,2);
             float xPos; 
-            if (xRand == 0) xPos = -1.5f;
-            else xPos = 1.5f;
+            if (xRand == 0) xPos = -1.0f;
+            else xPos = 1.0f;
 
             item.transform.position  =  new  Vector3(xPos, Random.Range(-1.15f, 1.15f), 0);
             item.SetActive(true);
