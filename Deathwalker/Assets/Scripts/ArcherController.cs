@@ -68,7 +68,7 @@ public class ArcherController : Movement
     // Wait 1.5 seconds before archer is allowed to shoot when it is spawned
     IEnumerator countdownToShoot() 
     {
-        yield return new WaitForSeconds(1.5f);
+        yield return new WaitForSeconds(0.5f);
         // Start shooting after waiting for an initial 1.5 seconds
         startShooting = true;
     }
