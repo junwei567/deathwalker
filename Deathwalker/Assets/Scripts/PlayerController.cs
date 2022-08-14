@@ -201,8 +201,14 @@ public class PlayerController : Movement
         // =============
         else {
             // Decrease player health upon enemy or damage object (e.g arrow) collision 
-            if ((col.tag == "Enemy" || col.tag == "DamageObject" || col.tag == "Skeleton") && !collided) {
+            if ((col.tag == "Enemy" || col.tag == "DamageObject") && !collided) {
                 TakeDamage();
+            }
+            if (col.tag == "Skeleton" && !collided){
+                skeletonController = col.gameObject.GetComponent<SkeletonController>();
+                if (skeletonController.alive == true){
+                    TakeDamage();
+                }
             }
             // Special condition for collision with spell
             if (col.tag == "Spell" && !collided) {
