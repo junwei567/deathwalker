@@ -28,6 +28,8 @@ public class PlayerController : Movement
     public GameObject bloodPool3;
     public GameObject bloodPool4;
 
+    // private String hitType;
+
     [SerializeField]
     public IntegerSO playerHealthSO;
  
@@ -123,8 +125,8 @@ public class PlayerController : Movement
     }
     void PlayDashSound()
     {
-        if (!playerAudio.isPlaying){
-            playerAudio.PlayOneShot(playerAudio.clip);
+        if (!cam_shake.audioSource.isPlaying){
+            cam_shake.slashAudio();
         }
     }
     public void TakeDamage()
@@ -148,7 +150,7 @@ public class PlayerController : Movement
         collided = false;
     }
 
-    private void enemyKillEffect(Collider2D col){
+    private void enemyKillEffect(Collider2D col, string hitType){
         int rand = Random.Range(0, 4);
         if (rand == 0){
             Instantiate(bloodPool1,col.gameObject.transform.position, Quaternion.identity);
@@ -161,6 +163,11 @@ public class PlayerController : Movement
         }
         Instantiate(deathEffect,col.gameObject.transform.position, Quaternion.identity);
         cam_shake.playerCamShake();
+        if (hitType == "Kill"){
+            cam_shake.killAudio();
+        }else if (hitType == "Hit"){
+            cam_shake.hitAudio();
+        }
 
     }
  
@@ -174,17 +181,17 @@ public class PlayerController : Movement
             if (col.tag == "Enemy") {
                 col.gameObject.SetActive(false);
                 if (killeffect_ready == true){
-                    enemyKillEffect(col);
+                    enemyKillEffect(col, "Kill");
                     killeffect_ready = false;
                 }
             }
             else if (col.tag == "Skeleton") {
-                Debug.Log("kill");
+                // Debug.Log("kill");
                 // Debug.Log(col.gameObject.GetComponent(dead));
                 skeletonController = col.gameObject.GetComponent<SkeletonController>();
                 skeletonController.dying = true;
                 if (killeffect_ready == true){
-                    enemyKillEffect(col);
+                    enemyKillEffect(col,"Hit");
                     killeffect_ready = false;
                 }
             }
