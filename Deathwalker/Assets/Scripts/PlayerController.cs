@@ -180,6 +180,7 @@ public class PlayerController : Movement
             // Destroy enemy gameObject if collides with enemy
             if (col.tag == "Enemy") {
                 GameManager.instance.enemyKilled();
+                GameManager.instance.displayKillsLeft();
                 col.gameObject.SetActive(false);
                 if (killeffect_ready == true){
                     enemyKillEffect(col, "Kill");

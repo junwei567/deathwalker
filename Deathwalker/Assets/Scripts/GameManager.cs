@@ -19,6 +19,7 @@ public class GameManager : MonoBehaviour
     public GameObject UIObject;
     public Text playerHealth;
     public Text timeTaken;
+    public Text killCount;
     public Image heart1;
     public Image heart2;
     public Image heart3;
@@ -68,6 +69,16 @@ public class GameManager : MonoBehaviour
         if (scene.name == "Dungeon1" || scene.name == "NEWDungeon2" || scene.name == "Dungeon4") {
             Debug.Log("Start fight scene called");
             startFightScene();
+        }
+        // Load kill count text depending on dungeon
+        if (scene.name == "Dungeon1") {
+            killCount.text = dungeon1Kills.Value.ToString() + " Left";
+        }
+        else if (scene.name == "NEWDungeon2") {
+            killCount.text = dungeon2Kills.Value.ToString() + " Left";
+        }
+        else if (scene.name == "Dungeon4") {
+            killCount.text = dungeon4Kills.Value.ToString() + " Left";
         }
         if (!PlayerPrefs.HasKey("State")) {
             return;
@@ -203,6 +214,18 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    public void displayKillsLeft() {
+        if (currentDungeon.Value == "Dungeon1") {
+            killCount.text = dungeon1Kills.Value.ToString() + " Left";
+        }
+        else if (currentDungeon.Value == "NEWDungeon2") {
+            killCount.text = dungeon2Kills.Value.ToString() + " Left";
+        }
+        else if (currentDungeon.Value == "Dungeon4") {
+            killCount.text = dungeon4Kills.Value.ToString() + " Left";
+        }
+    }
+
     public void timerTicker() {
         timeTaken.text = "Time: " + timerSO.Value.ToString("F2");
     }
@@ -218,4 +241,5 @@ public class GameManager : MonoBehaviour
         public float score;
         public string name;
     }
+
 }
