@@ -52,30 +52,30 @@ public class KnightController : Movement
             }
         }
         if (lunging){
-            if (step == 100){
-                Debug.Log("winding finish");
+            if (step == 300){
+                Debug.Log("lunging");
                 Debug.Log(Time.time-startTime);
                 startTime = Time.time;
                 anim.SetBool("inAttackRange", false);
             }
 
-            if (step == 120){
-                Debug.Log("lunging");
+            if (step == 340){
+                Debug.Log("lunge finish");
                 Debug.Log(Time.time-startTime);
                 startTime = Time.time;
             }
 
-            if (step >= 100 && step <= 120){
+            if (step >= 300 && step <= 360){
                 UpdateMovement(new Vector3(target_x, target_y, 0).normalized * 5.0f);
             }
 
-            if (step == 220){
-                Debug.Log("lunging");
+            if (step == 660){
+                Debug.Log("move");
                 Debug.Log(Time.time-startTime);
                 startTime = Time.time;
             }
 
-            if (step >= 220){
+            if (step >= 660){
                 Debug.Log(Time.time-startTime);
                 startTime = Time.time;
                 lunging = false;
