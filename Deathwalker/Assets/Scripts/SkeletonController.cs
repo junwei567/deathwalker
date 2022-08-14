@@ -91,6 +91,10 @@ public class SkeletonController : Movement
             GameManager.instance.enemyKilled();
             GameManager.instance.displayKillsLeft();
             skeleton.SetActive(false);
+            attack = false;
+            dying = false;
+            alive = true;
+            vulnerable = false;
         }
 
 
