@@ -6,7 +6,7 @@ public class ArcherController : Movement
 {
     public float cooldown = 2.0f;
     public float lastUsed;
-    public float arrowSpeed = 4.0f;
+    public float arrowSpeed = 2.0f;
     private GameObject player;
     public GameObject arrowPrefab;
     private bool startShooting = false;

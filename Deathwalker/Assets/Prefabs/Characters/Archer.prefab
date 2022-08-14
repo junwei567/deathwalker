@@ -142,8 +142,7 @@ MonoBehaviour:
     maxNormalAngle: 0
   cooldown: 1.5
   lastUsed: 0
-  arrowSpeed: 4
-  player: {fileID: 1057229450246413843, guid: c7405e75bddc841308f25bc6473e0714, type: 3}
+  arrowSpeed: 2
   arrowPrefab: {fileID: 8104146238797723654, guid: 8e3d6c20754a04863abc29f4e4fc4f12, type: 3}
 --- !u!58 &5396209452347790517
 CircleCollider2D:
