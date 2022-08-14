@@ -6,7 +6,7 @@ public class ArcherController : Movement
 {
     public float cooldown = 2.0f;
     public float lastUsed;
-    public float arrowSpeed = 4.0f;
+    public float arrowSpeed = 2.0f;
     private GameObject player;
     public GameObject arrowPrefab;
     private bool startShooting = false;
@@ -68,7 +68,7 @@ public class ArcherController : Movement
     // Wait 1.5 seconds before archer is allowed to shoot when it is spawned
     IEnumerator countdownToShoot() 
     {
-        yield return new WaitForSeconds(1.5f);
+        yield return new WaitForSeconds(0.5f);
         // Start shooting after waiting for an initial 1.5 seconds
         startShooting = true;
     }
