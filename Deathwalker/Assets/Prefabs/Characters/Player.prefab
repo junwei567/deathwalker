@@ -118,7 +118,7 @@ MonoBehaviour:
   dashSpeed: 2
   dashTime: 0.3
   lastUsed: 0
-  cooldown: 1
+  cooldown: 0.6
   threshold: 0.01
   immuneTime: 2
   doubleDash: 0
@@ -128,10 +128,6 @@ MonoBehaviour:
   bloodPool3: {fileID: 7906100416349545174, guid: 3946f23f2b478544281f7ebfd0751796, type: 3}
   bloodPool4: {fileID: 682575859073189212, guid: 9ad4cf72557f53c47b604562a8a6ef27, type: 3}
   playerHealthSO: {fileID: 11400000, guid: 2b416af756e71484c9ac5a175ebfb8dc, type: 2}
-  dungeon1Kills: {fileID: 11400000, guid: 501797dc3ee84419abea6b8d62cf8bc5, type: 2}
-  dungeon2Kills: {fileID: 11400000, guid: f876efb28eb4c4a1f97c283806889ed0, type: 2}
-  dungeon4Kills: {fileID: 11400000, guid: c4e40d487d8324823abcb4b6b9bc9ecc, type: 2}
-  currentDungeon: {fileID: 11400000, guid: 3c7d7b01b494342f3b2b01747455a624, type: 2}
 --- !u!61 &1057229450246414060
 BoxCollider2D:
   m_ObjectHideFlags: 0
