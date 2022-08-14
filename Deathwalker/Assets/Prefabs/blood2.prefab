@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2118968621357758010}
   - component: {fileID: 3515604829372063469}
+  - component: {fileID: -3426449216738815149}
   m_Layer: 0
   m_Name: blood2
   m_TagString: Untagged
@@ -84,3 +85,16 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &-3426449216738815149
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5737642761141223826}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9bafa0de564b969439232d6efac0cf59, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  blood: {fileID: 5737642761141223826}

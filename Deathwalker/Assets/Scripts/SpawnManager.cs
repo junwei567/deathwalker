@@ -56,9 +56,9 @@ public class SpawnManager : MonoBehaviour
     IEnumerator stage1MeleeMobs()
     {
         int counter = 0;
-        while (counter < 0) {
+        while (counter < 20) {
             enemy_type = Random.Range(0.0f, 1.0f);
-            if (enemy_type >= 0) {
+            if (enemy_type >= 0.8f) {
                 spawnFromPooler(ObjectType.skeleton);
             } else {
                 spawnFromPooler(ObjectType.knight);
