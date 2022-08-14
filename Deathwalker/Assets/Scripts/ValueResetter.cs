@@ -9,6 +9,8 @@ public class ValueResetter : MonoBehaviour
     [SerializeField]
     private IntegerSO playerLivesSO;
     [SerializeField]
+    public FloatSO timerSO;
+    [SerializeField]
     private IntegerSO dungeon1Kills;
     [SerializeField]
     private IntegerSO dungeon2Kills;
@@ -20,12 +22,13 @@ public class ValueResetter : MonoBehaviour
         // Setting default values
         playerHealthSO.Value = 3;
         playerLivesSO.Value = 3;
-        dungeon1Kills.Value = 10;
-        dungeon2Kills.Value = 20;
-        dungeon4Kills.Value = 30;
+        dungeon1Kills.Value = 1;
+        dungeon2Kills.Value = 1;
+        dungeon4Kills.Value = 1;
         currentDungeon.Value = "Dungeon1";
         // Make cursor visible
         Cursor.visible = true;
+        timerSO.Value = 0;
     }
     // Start is called before the first frame update
     void Start()

@@ -16,36 +16,36 @@ public class HighScoreTable : MonoBehaviour
 
         entryTemplate.gameObject.SetActive(false);
 
-        // hScoreEntryList = new List<HScoreEntry>() {
-        //     new HScoreEntry{score=23424, name="John Doe"},
-        //     new HScoreEntry{score=234234, name="John De"},
-        //     new HScoreEntry{score=23434524, name="John oe"},
-        //     new HScoreEntry{score=2342234, name="Jon Doe"}
-        // };
-
-        AddHScoreEntry(100, "Johnny");
+        // AddHScoreEntry(100, "Johnny");
 
         string jsonString = PlayerPrefs.GetString("hScoreTable");
         HScores hScores = JsonUtility.FromJson<HScores>(jsonString);
-
-        // sort by score
-        for(int i = 0; i < hScores.hScoreEntryList.Count; i++) {
-            for(int j = i + 1; j < hScores.hScoreEntryList.Count; j++) {
-                if (hScores.hScoreEntryList[j].score > hScores.hScoreEntryList[i].score) {
-                    HScoreEntry tmp = hScores.hScoreEntryList[i];
-                    hScores.hScoreEntryList[i] = hScores.hScoreEntryList[j];
-                    hScores.hScoreEntryList[j] = tmp;
+        if (jsonString != "") {
+            // sort by score
+            for(int i = 0; i < hScores.hScoreEntryList.Count; i++) {
+                for(int j = i + 1; j < hScores.hScoreEntryList.Count; j++) {
+                    if (hScores.hScoreEntryList[j].score < hScores.hScoreEntryList[i].score) {
+                        HScoreEntry tmp = hScores.hScoreEntryList[i];
+                        hScores.hScoreEntryList[i] = hScores.hScoreEntryList[j];
+                        hScores.hScoreEntryList[j] = tmp;
+                    }
                 }
             }
-        }
 
-        hScoreEntryTransformList = new List<Transform>();
-        foreach (HScoreEntry hScoreEntry in hScores.hScoreEntryList) {
-            if (hScoreEntryTransformList.Count < 5) {
-                CreateHScoreEntryTransform(hScoreEntry, entryContainer, hScoreEntryTransformList);
+            hScoreEntryTransformList = new List<Transform>();
+            foreach (HScoreEntry hScoreEntry in hScores.hScoreEntryList) {
+                if (hScoreEntryTransformList.Count < 5) {
+                    CreateHScoreEntryTransform(hScoreEntry, entryContainer, hScoreEntryTransformList);
+                }
             }
+        } else {
+            hScoreEntryList = new List<HScoreEntry>() {
+                new HScoreEntry{score=900, name="Darkio"}
+            };
+            string json = JsonUtility.ToJson(hScoreEntryList);
+            PlayerPrefs.SetString("hScoreTable", json);
+            PlayerPrefs.Save();
         }
-
     }
 
     private void CreateHScoreEntryTransform(HScoreEntry hScoreEntry, Transform container, List<Transform> transformList) {
@@ -56,7 +56,7 @@ public class HighScoreTable : MonoBehaviour
         entryTransform.gameObject.SetActive(true);
 
         int rank = transformList.Count + 1;
-        int score = hScoreEntry.score;
+        float score = hScoreEntry.score;
         string name = hScoreEntry.name;
         entryTransform.Find("posText").GetComponent<Text>().text = rank.ToString();
         entryTransform.Find("nameText").GetComponent<Text>().text = name;
@@ -65,7 +65,7 @@ public class HighScoreTable : MonoBehaviour
         transformList.Add(entryTransform);
     }
 
-    public void AddHScoreEntry (int score, string name) {
+    public void AddHScoreEntry (float score, string name) {
         // Create HighScore Entry
         HScoreEntry hScoreEntry = new HScoreEntry { score = score, name = name };
         // Load saved HighScores
@@ -85,7 +85,7 @@ public class HighScoreTable : MonoBehaviour
 
     [System.Serializable]
     private class HScoreEntry {
-        public int score;
+        public float score;
         public string name;
     }
 }
