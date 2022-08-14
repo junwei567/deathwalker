@@ -10,9 +10,9 @@ public class KnightController : Movement
     public float knightSpeed = 0.55f;
     public GameObject knight;
     private GameObject player;
-    private bool lunging = false;
+    public bool lunging = false;
     private bool inRange;
-    private bool charge;
+    public bool charge;
     public float attackRadius;
     private Animator anim;
     public LayerMask whatIsPlayer;
@@ -26,7 +26,7 @@ public class KnightController : Movement
         base.Start();
         player = GameObject.Find("Player");
         anim = GetComponent<Animator>();
-        lastUsed = Time.time;
+        lastUsed = Time.time - 1.0f;
         lunging = false;
         charge = false;
     }

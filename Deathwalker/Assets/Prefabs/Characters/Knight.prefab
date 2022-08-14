@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 8801742751364790631}
   m_Layer: 0
   m_Name: Knight
-  m_TagString: Enemy
+  m_TagString: Knight
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -164,6 +164,8 @@ MonoBehaviour:
   startTime: 0
   knightSpeed: 0.6
   knight: {fileID: 8890790428679051305}
+  lunging: 0
+  charge: 0
   attackRadius: 0.5
   whatIsPlayer:
     serializedVersion: 2

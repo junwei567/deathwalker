@@ -19,6 +19,7 @@ public class PlayerController : Movement
     private AudioSource playerAudio;
     private SpriteRenderer playerRenderer;
     private SkeletonController skeletonController;
+    private KnightController knightController;
     private bool killeffect_ready;
 
     private cam_shake cam_shake;
@@ -186,8 +187,17 @@ public class PlayerController : Movement
                     enemyKillEffect(col, "Kill");
                     killeffect_ready = false;
                 }
-            }
-            else if (col.tag == "Skeleton") {
+            } else if (col.tag == "Knight") {
+                // Debug.Log(col.gameObject.GetComponent(dead));
+                knightController = col.gameObject.GetComponent<KnightController>();
+                knightController.lunging = false;
+                knightController.charge = false;
+                col.gameObject.SetActive(false);
+                if (killeffect_ready == true){
+                    enemyKillEffect(col,"Kill");
+                    killeffect_ready = false;
+                }
+            } else if (col.tag == "Skeleton") {
                 // Debug.Log(col.gameObject.GetComponent(dead));
                 skeletonController = col.gameObject.GetComponent<SkeletonController>();
                 skeletonController.dying = true;
@@ -203,6 +213,9 @@ public class PlayerController : Movement
         else {
             // Decrease player health upon enemy or damage object (e.g arrow) collision 
             if ((col.tag == "Enemy" || col.tag == "DamageObject") && !collided) {
+                TakeDamage();
+            }
+            if (col.tag == "Knight" && !collided) {
                 TakeDamage();
             }
             if (col.tag == "Skeleton" && !collided){
