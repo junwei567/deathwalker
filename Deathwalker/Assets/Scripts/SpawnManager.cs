@@ -16,8 +16,8 @@ public class SpawnManager : MonoBehaviour
             // xRand will determine if enemy spawns from left or right side
             int xRand = Random.Range(0,2);
             float xPos; 
-            if (xRand == 0) xPos = -1.5f;
-            else xPos = 1.5f;
+            if (xRand == 0) xPos = -1.0f;
+            else xPos = 1.0f;
 
             item.transform.position  =  new  Vector3(xPos, Random.Range(-1.15f, 1.15f), 0);
             item.SetActive(true);
@@ -56,9 +56,9 @@ public class SpawnManager : MonoBehaviour
     IEnumerator stage1MeleeMobs()
     {
         int counter = 0;
-        while (counter < 1) {
+        while (counter < 20) {
             enemy_type = Random.Range(0.0f, 1.0f);
-            if (enemy_type >= 0.0f) {
+            if (enemy_type >= 1.1f) {
                 spawnFromPooler(ObjectType.skeleton);
             } else {
                 spawnFromPooler(ObjectType.knight);

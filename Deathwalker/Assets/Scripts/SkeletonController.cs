@@ -25,6 +25,7 @@ public class SkeletonController : Movement
     private int deadlock_counter = 0;
     private float target_x;
     private float target_y;
+    private cam_shake cam_shake;
 
     // Start is called before the first frame update
     protected override void Start()
@@ -38,6 +39,7 @@ public class SkeletonController : Movement
         anim.SetBool("inRange", false);
         anim.SetBool("isDead", false);
         anim.SetBool("timeout", false);
+        cam_shake = GameObject.FindGameObjectWithTag("ScreenShake").GetComponent<cam_shake>();
     }
 
     // Update is called once per frame
@@ -107,12 +109,18 @@ public class SkeletonController : Movement
     }
     IEnumerator attackCoroutine() {
         if (attack){
+            StartCoroutine(camShakeCoroutine());
             anim.SetBool("inRange", true);
             yield return new WaitForSeconds(2);
             anim.SetBool("inRange", false);
             attack = false;
             lastUsed = Time.time;
         }
+    }
+
+    IEnumerator camShakeCoroutine() {
+        yield return new WaitForSeconds(0.7f);
+        cam_shake.enemyCamShake();
     }
     
     // if enemy dead

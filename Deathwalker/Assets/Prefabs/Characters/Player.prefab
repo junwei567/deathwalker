@@ -115,12 +115,18 @@ MonoBehaviour:
     maxDepth: 0
     minNormalAngle: 0
     maxNormalAngle: 0
-  dashSpeed: 4
-  dashTime: 0.1
+  dashSpeed: 2
+  dashTime: 0.3
   lastUsed: 0
   cooldown: 1
   threshold: 0.01
   immuneTime: 2
+  doubleDash: 0
+  deathEffect: {fileID: 6005894712236129728, guid: e31ae990385f06d40a2f2e04d805f8da, type: 3}
+  bloodPool1: {fileID: 8962988449309077011, guid: b28d06b5fc3c74f4eb7accf0466de678, type: 3}
+  bloodPool2: {fileID: 5737642761141223826, guid: a53b961b945513a49809a447bac9bc93, type: 3}
+  bloodPool3: {fileID: 7906100416349545174, guid: 3946f23f2b478544281f7ebfd0751796, type: 3}
+  bloodPool4: {fileID: 682575859073189212, guid: 9ad4cf72557f53c47b604562a8a6ef27, type: 3}
   playerHealthSO: {fileID: 11400000, guid: 2b416af756e71484c9ac5a175ebfb8dc, type: 2}
 --- !u!61 &1057229450246414060
 BoxCollider2D:

@@ -19,6 +19,14 @@ public class PlayerController : Movement
     private AudioSource playerAudio;
     private SpriteRenderer playerRenderer;
     private SkeletonController skeletonController;
+    private bool killeffect_ready;
+
+    private cam_shake cam_shake;
+    public GameObject deathEffect;
+    public GameObject bloodPool1;
+    public GameObject bloodPool2;
+    public GameObject bloodPool3;
+    public GameObject bloodPool4;
 
     [SerializeField]
     public IntegerSO playerHealthSO;
@@ -29,6 +37,7 @@ public class PlayerController : Movement
         playerAnimator = GetComponent<Animator>();
         playerAudio = GetComponent<AudioSource>();
         playerRenderer = GetComponent<SpriteRenderer>();
+        cam_shake = GameObject.FindGameObjectWithTag("ScreenShake").GetComponent<cam_shake>();
     }
     // Update is called once per frame
     protected override void Update()
@@ -44,26 +53,28 @@ public class PlayerController : Movement
         if (Input.GetMouseButtonDown(0)) {
             // DOUBLE DASH ACTIVATED and not currently dashing
             if (doubleDash && !dashing) {
+                // Add to dash counter
+                dashCount++;
+                Debug.Log(dashCount);
+                dashing = true;
+                playerAnimator.SetBool("dashing", dashing);
 
-                if (dashCount == 0) {
-                    // Add to dash counter
-                    lastUsed = Time.time;
-                    dashCount++;
-                    dashing = true;
-                    playerAnimator.SetBool("dashing", dashing);
-                }
-                else if (dashCount == 1) {
-                    // Add to dash counter
-                    lastUsed = Time.time;
-                    dashCount++;
-                    dashing = true;
-                    playerAnimator.SetBool("dashing", dashing);
+                // to ensure cam shake once per dash
+                killeffect_ready = true;
+
+                // Add cooldown since player already dashed twice
+                if (dashCount == 2) {
+                   lastUsed = Time.time;
+                   // Reset dash count
+                   dashCount = 0;
                 }
             } 
             // NO DOUBLE DASH
             if (!doubleDash) {
                 // If skill is NOT on cooldown
                 if (Time.time - lastUsed > cooldown) {
+                    // to ensure cam shake once per dash
+                    killeffect_ready = true;
                     lastUsed = Time.time;
                     dashing = true;
                     playerAnimator.SetBool("dashing", dashing);
@@ -137,6 +148,22 @@ public class PlayerController : Movement
         playerRenderer.sortingLayerID = SortingLayer.NameToID("Default");
         collided = false;
     }
+
+    private void enemyKillEffect(Collider2D col){
+        int rand = Random.Range(0, 4);
+        if (rand == 0){
+            Instantiate(bloodPool1,col.gameObject.transform.position, Quaternion.identity);
+        } else if(rand == 1){
+            Instantiate(bloodPool2,col.gameObject.transform.position, Quaternion.identity);
+        } else if(rand == 2){
+            Instantiate(bloodPool3,col.gameObject.transform.position, Quaternion.identity);
+        } else if(rand == 3){
+            Instantiate(bloodPool4,col.gameObject.transform.position, Quaternion.identity);
+        }
+        Instantiate(deathEffect,col.gameObject.transform.position, Quaternion.identity);
+        cam_shake.playerCamShake();
+
+    }
  
     protected override void onCollide(Collider2D col)
     {
@@ -147,11 +174,19 @@ public class PlayerController : Movement
             // Destroy enemy gameObject if collides with enemy
             if (col.tag == "Enemy") {
                 col.gameObject.SetActive(false);
+                if (killeffect_ready == true){
+                    enemyKillEffect(col);
+                    killeffect_ready = false;
+                }
             }
             else if (col.tag == "Skeleton") {
                 // Debug.Log(col.gameObject.GetComponent(dead));
                 skeletonController = col.gameObject.GetComponent<SkeletonController>();
                 skeletonController.dying = true;
+                if (killeffect_ready == true){
+                    enemyKillEffect(col);
+                    killeffect_ready = false;
+                }
             }
         } 
         // =============
