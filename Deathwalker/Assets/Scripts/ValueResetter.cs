@@ -24,6 +24,8 @@ public class ValueResetter : MonoBehaviour
         dungeon2Kills.Value = 20;
         dungeon4Kills.Value = 30;
         currentDungeon.Value = "Dungeon1";
+        // Make cursor visible
+        Cursor.visible = true;
     }
     // Start is called before the first frame update
     void Start()
