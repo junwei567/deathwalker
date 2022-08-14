@@ -7,6 +7,7 @@ public class KnightController : Movement
     public float cooldown = 1.0f;
     public float lastUsed;
     public float startTime;
+    public float knightSpeed = 0.55f;
     public GameObject knight;
     private GameObject player;
     private bool lunging = false;
@@ -87,7 +88,7 @@ public class KnightController : Movement
         }
         // If player is not in shooting range
         if (!lunging) {
-            UpdateMovement(new Vector3(x,y,0).normalized * 0.7f);
+            UpdateMovement(new Vector3(x,y,0).normalized * knightSpeed);
         }
     }
 }

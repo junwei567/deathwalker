@@ -5,6 +5,7 @@ using UnityEngine;
 public class ArcherController : Movement
 {
     public float cooldown = 2.0f;
+    public float archerSpeed = 0.4f;
     public float lastUsed;
     public float arrowSpeed = 2.0f;
     private GameObject player;
@@ -50,7 +51,7 @@ public class ArcherController : Movement
         // If player is not in shooting range
         if (!inRange) {
             archerAnimator.SetFloat("xySpeed", (Mathf.Abs(x) + Mathf.Abs(y)));
-            UpdateMovement(new Vector3(x,y,0));
+            UpdateMovement(new Vector3(x,y,0).normalized * archerSpeed);
         }
     }
     void OnTriggerEnter2D(Collider2D col) 
