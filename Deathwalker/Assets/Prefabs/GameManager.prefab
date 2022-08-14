@@ -453,7 +453,7 @@ MonoBehaviour:
   dungeon1Kills: {fileID: 11400000, guid: 501797dc3ee84419abea6b8d62cf8bc5, type: 2}
   dungeon2Kills: {fileID: 11400000, guid: f876efb28eb4c4a1f97c283806889ed0, type: 2}
   dungeon4Kills: {fileID: 11400000, guid: c4e40d487d8324823abcb4b6b9bc9ecc, type: 2}
-  highScoreTable: {fileID: 0}
+  highScoreTable: {fileID: 8147982748968043953, guid: d232f66991945484ba19f311a90c1b70, type: 3}
 --- !u!1 &9049245559535587617
 GameObject:
   m_ObjectHideFlags: 0
