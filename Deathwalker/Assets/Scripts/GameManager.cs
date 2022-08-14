@@ -66,6 +66,7 @@ public class GameManager : MonoBehaviour
     }
     public void LoadState(Scene scene, LoadSceneMode mode)
     {
+        // Prepare dungeon
         if (scene.name == "Dungeon1" || scene.name == "NEWDungeon2" || scene.name == "Dungeon4") {
             Debug.Log("Start fight scene called");
             startFightScene();
@@ -82,6 +83,10 @@ public class GameManager : MonoBehaviour
         }
         if (!PlayerPrefs.HasKey("State")) {
             return;
+        }
+        // Enable cursor visibility on last screen for winners
+        if (scene.name == "Winnerwinner") {
+            Cursor.visible = true;
         }
 
         if (!PlayerPrefs.HasKey("hScoreTable")) {
