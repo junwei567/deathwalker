@@ -46,21 +46,43 @@ public class KnightController : Movement
                 anim.SetBool("inAttackRange", true);
                 target_x = x;
                 target_y = y;
+                Debug.Log("winding");
+                startTime = Time.time;
                 // Lunge(x, y); 
             }
         }
         if (lunging){
             if (step == 100){
+                Debug.Log("winding finish");
+                Debug.Log(Time.time-startTime);
+                startTime = Time.time;
                 anim.SetBool("inAttackRange", false);
             }
+
+            if (step == 120){
+                Debug.Log("lunging");
+                Debug.Log(Time.time-startTime);
+                startTime = Time.time;
+            }
+
             if (step >= 100 && step <= 120){
                 UpdateMovement(new Vector3(target_x, target_y, 0).normalized * 5.0f);
             }
+
+            if (step == 220){
+                Debug.Log("lunging");
+                Debug.Log(Time.time-startTime);
+                startTime = Time.time;
+            }
+
             if (step >= 220){
+                Debug.Log(Time.time-startTime);
+                startTime = Time.time;
                 lunging = false;
                 lastUsed = Time.time;
                 step = -1;
             }
+
             step += 1;
         }
         // If player is not in shooting range

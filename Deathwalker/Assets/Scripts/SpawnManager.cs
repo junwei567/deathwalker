@@ -79,7 +79,7 @@ public class SpawnManager : MonoBehaviour
                 spawnFromPooler(ObjectType.wizard);
             }
             counter++;
-            time_spawn = Random.Range(0.5f, 1.5f);
+            time_spawn = Random.Range(2.5f, 3.5f);
             yield return new WaitForSeconds(time_spawn);
         }
         yield return null;
@@ -100,7 +100,7 @@ public class SpawnManager : MonoBehaviour
                 spawnFromPooler(ObjectType.wizard);
             }
             counter++;
-            time_spawn = Random.Range(0.5f, 1.5f);
+            time_spawn = Random.Range(1.0f, 2.0f);
             yield return new WaitForSeconds(time_spawn);
         }
         yield return null;
@@ -120,7 +120,7 @@ public class SpawnManager : MonoBehaviour
                 spawnFromPooler(ObjectType.wizard);
             }
             counter++;
-            time_spawn = Random.Range(0.5f, 1.5f);
+            time_spawn = Random.Range(0.0f, 1.0f);
             yield return new WaitForSeconds(time_spawn);
         }
         yield return null;
