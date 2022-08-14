@@ -20,7 +20,7 @@ public class ValueResetter : MonoBehaviour
     private StringSO currentDungeon;
     void Awake() {
         // Setting default values
-        playerHealthSO.Value = 3;
+        playerHealthSO.Value = 5;
         playerLivesSO.Value = 3;
         dungeon1Kills.Value = 1;
         dungeon2Kills.Value = 1;
