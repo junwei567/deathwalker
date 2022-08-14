@@ -87,7 +87,8 @@ public class SkeletonController : Movement
         // }
 
 
-        if (vulnerable & dying){
+        if (vulnerable & dying) {
+            GameManager.instance.enemyKilled();
             skeleton.SetActive(false);
         }
 
@@ -125,12 +126,10 @@ public class SkeletonController : Movement
             lastUsed = Time.time;
         }
     }
-
     IEnumerator camShakeCoroutine() {
         yield return new WaitForSeconds(0.7f);
         cam_shake.enemyCamShake();
     }
-    
     // if enemy dead
     IEnumerator deadCoroutine() {
         yield return new WaitForSeconds(1.2f);

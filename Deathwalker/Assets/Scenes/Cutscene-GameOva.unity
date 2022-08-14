@@ -950,7 +950,7 @@ PrefabInstance:
     - target: {fileID: 5221297129711046261, guid: 107135fa165e649d188661a5d86be12d, type: 3}
       propertyPath: ReloadScene
       value: 
-      objectReference: {fileID: 102900000, guid: 5891e080a356c47c89ae6c79fb968911, type: 3}
+      objectReference: {fileID: 102900000, guid: c49183f3773a44146ad2fff677372699, type: 3}
     - target: {fileID: 8841555637645192702, guid: 107135fa165e649d188661a5d86be12d, type: 3}
       propertyPath: m_Name
       value: DeathSceneLoader
