@@ -18,6 +18,7 @@ public class GameManager : MonoBehaviour
     }
     public GameObject UIObject;
     public Text playerHealth;
+    public Text timeTaken;
     public Image heart1;
     public Image heart2;
     public Image heart3;
@@ -27,6 +28,8 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     private IntegerSO playerLivesSO;
     [SerializeField]
+    public FloatSO timerSO;
+    [SerializeField]
     private StringSO currentDungeon;
     [SerializeField]
     private IntegerSO dungeon1Kills;
@@ -34,6 +37,7 @@ public class GameManager : MonoBehaviour
     private IntegerSO dungeon2Kills;
     [SerializeField]
     private IntegerSO dungeon4Kills;
+    public HighScoreTable highScoreTable;
     
     void Awake()
     {
@@ -169,5 +173,13 @@ public class GameManager : MonoBehaviour
                 SceneManager.LoadScene("Cutscene-GameOva");
             }
         }
+    }
+
+    public void timerTicker() {
+        timeTaken.text = "Time: " + timerSO.Value.ToString("F2");
+    }
+
+    public void declareWinner(string winnerName) {
+        highScoreTable.AddHScoreEntry(timerSO.Value, winnerName);
     }
 }
