@@ -72,7 +72,6 @@ public class GameManager : MonoBehaviour
         if (livesLeft == 1) {
             displayHealth(1);
             playerHealthSO.Value = 1;
-            playerController.activateDoubleDash();
             UIObject.SetActive(false);
             SceneManager.LoadScene("Cutscene-DeathNumbaOne");
         }
@@ -87,6 +86,7 @@ public class GameManager : MonoBehaviour
             playerController.activateLongDash();    
         }
         else if (playerHealthSO.Value == 1) {
+            playerController.activateLongDash();    
             playerController.activateDoubleDash();
         }
         displayHealth(playerHealthSO.Value);
