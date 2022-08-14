@@ -17,7 +17,7 @@ public class BloodController : MonoBehaviour
     void Update()
     {
         if (x>0){
-            x-=0.0005f;
+            x-=0.0001f;
             sprite.color = new Color(1,1,1,x);
         }
         else{

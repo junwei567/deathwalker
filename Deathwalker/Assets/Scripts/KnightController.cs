@@ -12,11 +12,11 @@ public class KnightController : Movement
     private GameObject player;
     private bool lunging = false;
     private bool inRange;
+    private bool charge;
     public float attackRadius;
     private Animator anim;
     public LayerMask whatIsPlayer;
     public float dashSpeed = 1.2f;
-    private int step = 0;
     private float target_x;
     private float target_y;
 
@@ -28,6 +28,7 @@ public class KnightController : Movement
         anim = GetComponent<Animator>();
         lastUsed = Time.time;
         lunging = false;
+        charge = false;
     }
 
     // Update is called once per frame
@@ -50,47 +51,68 @@ public class KnightController : Movement
                 target_y = y;
                 Debug.Log("winding");
                 startTime = Time.time;
+                StartCoroutine(Lunge(target_x,target_y));
                 // Lunge(x, y); 
             }
         }
-        if (lunging){
-            if (step == 300){
-                Debug.Log("lunging");
-                Debug.Log(Time.time-startTime);
-                startTime = Time.time;
-                anim.SetBool("inAttackRange", false);
-            }
-
-            if (step == 340){
-                Debug.Log("lunge finish");
-                Debug.Log(Time.time-startTime);
-                startTime = Time.time;
-            }
-
-            if (step >= 300 && step <= 360){
-                UpdateMovement(new Vector3(target_x, target_y, 0).normalized * 5.0f);
-            }
-
-            if (step == 660){
-                Debug.Log("move");
-                Debug.Log(Time.time-startTime);
-                startTime = Time.time;
-            }
-
-            if (step >= 660){
-                Debug.Log(Time.time-startTime);
-                startTime = Time.time;
-                lunging = false;
-                lastUsed = Time.time;
-                step = -1;
-            }
-
-            step += 1;
+        if (charge){
+            UpdateMovement(new Vector3(target_x, target_y, 0).normalized * 5.0f);
         }
+        // if (lunging){
+        //     if (step == 300){
+        //         Debug.Log("lunging");
+        //         Debug.Log(Time.time-startTime);
+        //         startTime = Time.time;
+        //         anim.SetBool("inAttackRange", false);
+        //     }
+
+        //     if (step == 340){
+        //         Debug.Log("lunge finish");
+        //         Debug.Log(Time.time-startTime);
+        //         startTime = Time.time;
+        //     }
+
+        //     if (step >= 300 && step <= 360){
+        //         UpdateMovement(new Vector3(target_x, target_y, 0).normalized * 5.0f);
+        //     }
+
+        //     if (step == 660){
+        //         Debug.Log("move");
+        //         Debug.Log(Time.time-startTime);
+        //         startTime = Time.time;
+        //     }
+
+        //     if (step >= 660){
+        //         Debug.Log(Time.time-startTime);
+        //         startTime = Time.time;
+        //         lunging = false;
+        //         lastUsed = Time.time;
+        //         step = -1;
+        //     }
+
+        //     step += 1;
+        // }
         // If player is not in shooting range
         if (!lunging) {
             UpdateMovement(new Vector3(x,y,0).normalized * knightSpeed);
         }
     }
+
+        IEnumerator Lunge(float target_x, float target_y) 
+        {
+            yield return new WaitForSeconds(0.45f);
+            anim.SetBool("inAttackRange", false);
+            charge = true;
+            StartCoroutine(Dash());
+            yield return new WaitForSeconds(0.55f);
+            lunging = false;
+            lastUsed = Time.time;
+        }
+        IEnumerator Dash() 
+        {
+            yield return new WaitForSeconds(0.15f);
+            charge = false;
+        }
+
 }
 
