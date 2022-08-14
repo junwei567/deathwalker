@@ -22,7 +22,8 @@ public class GameManager : MonoBehaviour
     public Image heart1;
     public Image heart2;
     public Image heart3;
-
+    public Image heart4;
+    public Image heart5;
     [SerializeField]
     public IntegerSO playerHealthSO;
     [SerializeField]
@@ -76,16 +77,15 @@ public class GameManager : MonoBehaviour
     }
     
     void startOver(int livesLeft) {
-
         if (livesLeft == 2) {
-            displayHealth(2);
-            playerHealthSO.Value = 2;
+            displayHealth(5);
+            playerHealthSO.Value = 5;
             UIObject.SetActive(false);
             SceneManager.LoadScene("Cutscene-DeathNumbaOne");
         }
         if (livesLeft == 1) {
-            displayHealth(1);
-            playerHealthSO.Value = 1;
+            displayHealth(5);
+            playerHealthSO.Value = 5;
             UIObject.SetActive(false);
             SceneManager.LoadScene("Cutscene-DeathNumbaOne");
         }
@@ -143,18 +143,37 @@ public class GameManager : MonoBehaviour
     public void displayHealth(int health) {
         playerHealth.text = "Health: " + health;
         // TODO BIG ASSUMPTION: every attack only reduce player health by 1
-       
+        if (health == 5) {
+            heart5.gameObject.SetActive(true);
+            heart4.gameObject.SetActive(true);
+            heart3.gameObject.SetActive(true);
+            heart2.gameObject.SetActive(true);
+            heart1.gameObject.SetActive(true);
+        }
+        if (health == 4) {
+            heart5.gameObject.SetActive(false);
+            heart4.gameObject.SetActive(true);
+            heart3.gameObject.SetActive(true);
+            heart2.gameObject.SetActive(true);
+            heart1.gameObject.SetActive(true);
+        }
         if (health == 3) {
+            heart5.gameObject.SetActive(false);
+            heart4.gameObject.SetActive(false);
             heart3.gameObject.SetActive(true);
             heart2.gameObject.SetActive(true);
             heart1.gameObject.SetActive(true);
         }
         if (health == 2) {
+            heart5.gameObject.SetActive(false);
+            heart4.gameObject.SetActive(false);
             heart3.gameObject.SetActive(false);
             heart2.gameObject.SetActive(true);
             heart1.gameObject.SetActive(true);
         }
         if (health == 1) {
+            heart5.gameObject.SetActive(false);
+            heart4.gameObject.SetActive(false);
             heart3.gameObject.SetActive(false);
             heart2.gameObject.SetActive(false);
             heart1.gameObject.SetActive(true);
