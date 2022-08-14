@@ -72,6 +72,15 @@ public class GameManager : MonoBehaviour
         if (!PlayerPrefs.HasKey("State")) {
             return;
         }
+
+        if (!PlayerPrefs.HasKey("hScoreTable")) {
+            List<HScoreEntry> hScoreEntryList = new List<HScoreEntry>() {
+                new HScoreEntry{score=900.0f, name="Darkio"}
+            };
+            string json = JsonUtility.ToJson(hScoreEntryList);
+            PlayerPrefs.SetString("hScoreTable", json);
+            PlayerPrefs.Save();
+        }
         string state = PlayerPrefs.GetString("State");
         collisions = int.Parse(state);
     }
@@ -199,6 +208,14 @@ public class GameManager : MonoBehaviour
     }
 
     public void declareWinner(string winnerName) {
-        highScoreTable.AddHScoreEntry(timerSO.Value, winnerName);
+        if (winnerName == "") {
+            winnerName = "Osiris";
+        }
+        highScoreTable.AddHScoreEntry( Mathf.Round(timerSO.Value * 100f) / 100f, winnerName);
+    }
+
+    private class HScoreEntry {
+        public float score;
+        public string name;
     }
 }
