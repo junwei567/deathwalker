@@ -27,6 +27,7 @@ public class KnightController : Movement
         player = GameObject.Find("Player");
         anim = GetComponent<Animator>();
         lastUsed = Time.time;
+        lunging = false;
     }
 
     // Update is called once per frame
