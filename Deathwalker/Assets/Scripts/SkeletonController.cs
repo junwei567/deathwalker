@@ -15,6 +15,7 @@ public class SkeletonController : Movement
     private bool revive;
     public bool dying = false;
     public bool alive = true;
+    public bool vulnerable = false;
     public float attackRadius = 3.0f;
     private Animator anim;
     public LayerMask whatIsPlayer;
@@ -85,6 +86,12 @@ public class SkeletonController : Movement
         //     counter +=1;
         // }
 
+
+        if (vulnerable & dying){
+            skeleton.SetActive(false);
+        }
+
+
         if (dying){
             // Debug.Log("hit");
             attack = false;
@@ -92,6 +99,7 @@ public class SkeletonController : Movement
             // can only die earliest 8 seconds after latest death
             if (Time.time - deadTime > reviveTimeout && alive){
                 alive = false;
+                // GetComponent<BoxCollider2D>().enabled = false;
                 anim.SetBool("inRange", false);
                 anim.SetBool("dying", true);
                 anim.SetBool("isDead", true);
@@ -125,6 +133,8 @@ public class SkeletonController : Movement
     
     // if enemy dead
     IEnumerator deadCoroutine() {
+        yield return new WaitForSeconds(1.2f);
+        vulnerable = true;
         yield return new WaitForSeconds(2);
         StartCoroutine(reviveCoroutine());
     }
@@ -137,6 +147,8 @@ public class SkeletonController : Movement
         yield return new WaitForSeconds(3);
         anim.SetBool("timeout", false);
         alive = true;
+        vulnerable = false;
+        // GetComponent<BoxCollider2D>().enabled = true;
     }
 }
 

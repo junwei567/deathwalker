@@ -180,6 +180,7 @@ public class PlayerController : Movement
                 }
             }
             else if (col.tag == "Skeleton") {
+                Debug.Log("kill");
                 // Debug.Log(col.gameObject.GetComponent(dead));
                 skeletonController = col.gameObject.GetComponent<SkeletonController>();
                 skeletonController.dying = true;

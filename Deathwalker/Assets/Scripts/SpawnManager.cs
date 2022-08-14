@@ -56,9 +56,9 @@ public class SpawnManager : MonoBehaviour
     IEnumerator stage1MeleeMobs()
     {
         int counter = 0;
-        while (counter < 20) {
+        while (counter < 0) {
             enemy_type = Random.Range(0.0f, 1.0f);
-            if (enemy_type >= 1.1f) {
+            if (enemy_type >= 0) {
                 spawnFromPooler(ObjectType.skeleton);
             } else {
                 spawnFromPooler(ObjectType.knight);
@@ -75,7 +75,7 @@ public class SpawnManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        spawnMobs(1);
+        spawnMobs(2);
     }
 
     // Update is called once per frame
