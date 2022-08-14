@@ -162,7 +162,7 @@ MonoBehaviour:
   cooldown: 3
   lastUsed: 0
   startTime: 0
-  knightSpeed: 0.63
+  knightSpeed: 0.6
   knight: {fileID: 8890790428679051305}
   attackRadius: 0.5
   whatIsPlayer:

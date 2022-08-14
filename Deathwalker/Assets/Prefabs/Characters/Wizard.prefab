@@ -135,7 +135,7 @@ MonoBehaviour:
     minNormalAngle: 0
     maxNormalAngle: 0
   cooldown: 2
-  wizardSpeed: 0.55
+  wizardSpeed: 0.42
   lastUsed: 0
   spellPrefab: {fileID: 364311535453255023, guid: 73eaf3433828345448e3acada32eb037, type: 3}
 --- !u!61 &4207117401531901718
