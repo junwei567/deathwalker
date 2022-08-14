@@ -38,6 +38,7 @@ public class PlayerController : Movement
         playerAudio = GetComponent<AudioSource>();
         playerRenderer = GetComponent<SpriteRenderer>();
         cam_shake = GameObject.FindGameObjectWithTag("ScreenShake").GetComponent<cam_shake>();
+        dashCount = 0;
     }
     // Update is called once per frame
     protected override void Update()
@@ -52,22 +53,20 @@ public class PlayerController : Movement
         // If player clicks on dash button
         if (Input.GetMouseButtonDown(0)) {
             // DOUBLE DASH ACTIVATED and not currently dashing
-            if (doubleDash && !dashing) {
+            if (doubleDash && !dashing && dashCount < 2) {
                 // Add to dash counter
                 dashCount++;
                 Debug.Log(dashCount);
                 dashing = true;
                 playerAnimator.SetBool("dashing", dashing);
-
+                lastUsed = Time.time;
                 // to ensure cam shake once per dash
                 killeffect_ready = true;
 
                 // Add cooldown since player already dashed twice
-                if (dashCount == 2) {
-                   lastUsed = Time.time;
-                   // Reset dash count
-                   dashCount = 0;
-                }
+                // if (dashCount == 2) {
+                //    lastUsed = Time.time;
+                // }
             } 
             // NO DOUBLE DASH
             if (!doubleDash) {
