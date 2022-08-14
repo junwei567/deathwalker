@@ -26,6 +26,15 @@ public class GameManager : MonoBehaviour
     public IntegerSO playerHealthSO;
     [SerializeField]
     private IntegerSO playerLivesSO;
+    [SerializeField]
+    private StringSO currentDungeon;
+    [SerializeField]
+    private IntegerSO dungeon1Kills;
+    [SerializeField]
+    private IntegerSO dungeon2Kills;
+    [SerializeField]
+    private IntegerSO dungeon4Kills;
+    
     void Awake()
     {
         // Prevent creation of multiple GameManager instances
@@ -51,7 +60,7 @@ public class GameManager : MonoBehaviour
     }
     public void LoadState(Scene scene, LoadSceneMode mode)
     {
-        if (scene.name == "Dungeon1") {
+        if (scene.name == "Dungeon1" || scene.name == "NEWDungeon2" || scene.name == "Dungeon4") {
             Debug.Log("Start fight scene called");
             startFightScene();
         }
@@ -63,6 +72,7 @@ public class GameManager : MonoBehaviour
     }
     
     void startOver(int livesLeft) {
+
         if (livesLeft == 2) {
             displayHealth(2);
             playerHealthSO.Value = 2;
@@ -82,14 +92,48 @@ public class GameManager : MonoBehaviour
         playerObject = GameObject.Find("Player");
         playerController = playerObject.GetComponent<PlayerController>();
         // Activate player's power ups
-        if (playerHealthSO.Value == 2) {
+        if (playerLivesSO.Value == 2) {
             playerController.activateLongDash();    
         }
-        else if (playerHealthSO.Value == 1) {
+        else if (playerLivesSO.Value == 1) {
             playerController.activateLongDash();    
             playerController.activateDoubleDash();
         }
         displayHealth(playerHealthSO.Value);
+    }
+    public void stageComplete() {
+        if (currentDungeon.Value == "Dungeon1") {
+            currentDungeon.Value = "NEWDungeon2";
+            SceneManager.LoadScene("NEWDungeon2");
+        }
+        else if (currentDungeon.Value == "NEWDungeon2") {
+            currentDungeon.Value = "Dungeon4";
+            SceneManager.LoadScene("Dungeon4");
+        }
+        else if (currentDungeon.Value == "Dungeon4") {
+            UIObject.SetActive(false);
+            SceneManager.LoadScene("Cutscene-GameClear");
+        }
+    }
+    public void enemyKilled() {
+        // Decrease the kills left in order for player to clear the stage
+        if (currentDungeon.Value == "Dungeon1") {
+            dungeon1Kills.Value --;
+        } 
+        else if (currentDungeon.Value == "NEWDungeon2") {
+            dungeon2Kills.Value --;
+        } 
+        else if (currentDungeon.Value == "Dungeon4") {
+            dungeon4Kills.Value --;
+        }
+        // If kills left is zero, call function in GameManager to signify stage clear
+        if (dungeon1Kills.Value == 0 && currentDungeon.Value == "Dungeon1") {
+            stageComplete();
+        } else if (dungeon2Kills.Value == 0 && currentDungeon.Value == "NEWDungeon2") {
+            stageComplete();
+        } else if (dungeon4Kills.Value == 0 && currentDungeon.Value == "Dungeon4") {
+            stageComplete();
+        }
     }
 
     public void displayHealth(int health) {
@@ -120,7 +164,9 @@ public class GameManager : MonoBehaviour
             } 
             // Game Over
             else {
-                Debug.Log("No lives left");
+                playerLivesSO.Value--;
+                UIObject.SetActive(false);
+                SceneManager.LoadScene("Cutscene-GameOva");
             }
         }
     }

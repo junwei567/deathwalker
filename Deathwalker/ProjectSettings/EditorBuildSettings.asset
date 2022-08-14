@@ -18,7 +18,7 @@ EditorBuildSettings:
     path: Assets/Scenes/Dungeon1.unity
     guid: bcfdb3717436544a4bd36f48766782a1
   - enabled: 1
-    path: Assets/Scenes/NEW Dungeon2.unity
+    path: Assets/Scenes/NEWDungeon2.unity
     guid: 37beb119113ce47b9a0dad239c346314
   - enabled: 1
     path: Assets/Scenes/Dungeon4.unity
@@ -29,4 +29,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Cutscene-DeathNumbaOne.unity
     guid: d0d13705730574573a263cd1213277d9
+  - enabled: 1
+    path: Assets/Scenes/Cutscene-GameOva.unity
+    guid: af3602c95dd9a4a0f841b76d7ed06777
   m_configObjects: {}

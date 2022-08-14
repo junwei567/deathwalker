@@ -179,6 +179,7 @@ public class PlayerController : Movement
         if (dashing) {
             // Destroy enemy gameObject if collides with enemy
             if (col.tag == "Enemy") {
+                GameManager.instance.enemyKilled();
                 col.gameObject.SetActive(false);
                 if (killeffect_ready == true){
                     enemyKillEffect(col, "Kill");
@@ -186,7 +187,6 @@ public class PlayerController : Movement
                 }
             }
             else if (col.tag == "Skeleton") {
-                // Debug.Log("kill");
                 // Debug.Log(col.gameObject.GetComponent(dead));
                 skeletonController = col.gameObject.GetComponent<SkeletonController>();
                 skeletonController.dying = true;
