@@ -35,7 +35,7 @@ public class SkeletonController : Movement
         player = GameObject.Find("Player");
         anim = GetComponent<Animator>();
         lastUsed = Time.time;
-        deadTime = Time.time;
+        deadTime = Time.time - 8.0f;
         attack = false;
         anim.SetBool("inRange", false);
         anim.SetBool("isDead", false);
