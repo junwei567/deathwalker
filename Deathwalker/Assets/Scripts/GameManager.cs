@@ -78,14 +78,14 @@ public class GameManager : MonoBehaviour
     void startOver(int livesLeft) {
 
         if (livesLeft == 2) {
-            displayHealth(2);
-            playerHealthSO.Value = 2;
+            displayHealth(3);
+            playerHealthSO.Value = 3;
             UIObject.SetActive(false);
             SceneManager.LoadScene("Cutscene-DeathNumbaOne");
         }
         if (livesLeft == 1) {
-            displayHealth(1);
-            playerHealthSO.Value = 1;
+            displayHealth(3);
+            playerHealthSO.Value = 3;
             UIObject.SetActive(false);
             SceneManager.LoadScene("Cutscene-DeathNumbaOne");
         }
