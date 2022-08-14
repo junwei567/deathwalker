@@ -22,9 +22,9 @@ public class ValueResetter : MonoBehaviour
         // Setting default values
         playerHealthSO.Value = 5;
         playerLivesSO.Value = 3;
-        dungeon1Kills.Value = 1;
-        dungeon2Kills.Value = 1;
-        dungeon4Kills.Value = 1;
+        dungeon1Kills.Value = 20;
+        dungeon2Kills.Value = 40;
+        dungeon4Kills.Value = 60;
         currentDungeon.Value = "Dungeon1";
         // Make cursor visible
         Cursor.visible = true;
