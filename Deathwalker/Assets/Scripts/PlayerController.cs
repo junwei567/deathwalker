@@ -192,6 +192,8 @@ public class PlayerController : Movement
                 knightController = col.gameObject.GetComponent<KnightController>();
                 knightController.lunging = false;
                 knightController.charge = false;
+                GameManager.instance.enemyKilled();
+                GameManager.instance.displayKillsLeft();
                 col.gameObject.SetActive(false);
                 if (killeffect_ready == true){
                     enemyKillEffect(col,"Kill");
