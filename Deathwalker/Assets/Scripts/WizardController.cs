@@ -5,6 +5,7 @@ using UnityEngine;
 public class WizardController : Movement
 {
     public float cooldown = 3.0f;
+    public float wizardSpeed = 0.4f;
     public float lastUsed;
     private GameObject player;
     public GameObject spellPrefab;
@@ -48,7 +49,7 @@ public class WizardController : Movement
         // If player is not in casting range
         if (!inRange) {
             wizardAnimator.SetFloat("xySpeed", (Mathf.Abs(x) + Mathf.Abs(y)));
-            UpdateMovement(new Vector3(x,y,0));
+            UpdateMovement(new Vector3(x,y,0).normalized * wizardSpeed);
         }
     }
     void OnTriggerEnter2D(Collider2D col) 

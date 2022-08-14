@@ -67,19 +67,32 @@ public class SpawnManager : MonoBehaviour
     IEnumerator stage1Mobs()
     {
         int counter = 0;
-        while (counter < 20) {
+        while (counter < 15) {
             enemy_type = Random.Range(0.0f, 1.0f);
-            if (enemy_type >= 0.9f) {
+            // Spawn knights and skeletons
+            if (enemy_type >= 0.7f) {
                 spawnFromPooler(ObjectType.skeleton);
-            } else if (enemy_type >= 0.6f) {
-                spawnFromPooler(ObjectType.archer);
-            } else if (enemy_type >= 0.3f) {
+            } 
+            else{
                 spawnFromPooler(ObjectType.knight);
-            } else{
-                spawnFromPooler(ObjectType.wizard);
             }
             counter++;
-            time_spawn = Random.Range(2.5f, 3.5f);
+            time_spawn = Random.Range(2f, 2.5f);
+            yield return new WaitForSeconds(time_spawn);
+        }
+        while (counter >= 15 && counter < 40) {
+            enemy_type = Random.Range(0.0f, 1.0f);
+            // Spawn knights and skeletons
+            if (enemy_type >= 0.9f) {
+                spawnFromPooler(ObjectType.skeleton);
+            } else if (enemy_type >= 0.5f) {
+                spawnFromPooler(ObjectType.archer);
+            }
+            else {
+                spawnFromPooler(ObjectType.knight);
+            }
+            counter++;
+            time_spawn = Random.Range(1.5f, 2f);
             yield return new WaitForSeconds(time_spawn);
         }
         yield return null;
@@ -90,6 +103,22 @@ public class SpawnManager : MonoBehaviour
         int counter = 0;
         while (counter < 40) {
             enemy_type = Random.Range(0.0f, 1.0f);
+            // Spawn more wizards
+            if (enemy_type >= 0.9f) {
+                spawnFromPooler(ObjectType.skeleton);
+            } else if (enemy_type >= 0.65f) {
+                spawnFromPooler(ObjectType.archer);
+            } else if (enemy_type >= 0.4f) {
+                spawnFromPooler(ObjectType.knight);
+            } else{
+                spawnFromPooler(ObjectType.wizard);
+            }
+            counter++;
+            time_spawn = Random.Range(1.0f, 2.0f);
+            yield return new WaitForSeconds(time_spawn);
+        }
+        while (counter >=40 && counter < 80) {
+            enemy_type = Random.Range(0.0f, 1.0f);
             if (enemy_type >= 0.9f) {
                 spawnFromPooler(ObjectType.skeleton);
             } else if (enemy_type >= 0.6f) {
@@ -100,7 +129,7 @@ public class SpawnManager : MonoBehaviour
                 spawnFromPooler(ObjectType.wizard);
             }
             counter++;
-            time_spawn = Random.Range(1.0f, 2.0f);
+            time_spawn = Random.Range(0.5f, 1.5f);
             yield return new WaitForSeconds(time_spawn);
         }
         yield return null;
@@ -108,7 +137,7 @@ public class SpawnManager : MonoBehaviour
     IEnumerator stage3Mobs()
     {
         int counter = 0;
-        while (counter < 60) {
+        while (counter < 120) {
             enemy_type = Random.Range(0.0f, 1.0f);
             if (enemy_type >= 0.9f) {
                 spawnFromPooler(ObjectType.skeleton);

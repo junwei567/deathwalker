@@ -118,7 +118,7 @@ MonoBehaviour:
   dashSpeed: 2
   dashTime: 0.3
   lastUsed: 0
-  cooldown: 0.6
+  cooldown: 1.5
   threshold: 0.01
   immuneTime: 2
   doubleDash: 0
