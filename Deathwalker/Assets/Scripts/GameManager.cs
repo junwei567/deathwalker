@@ -117,11 +117,11 @@ public class GameManager : MonoBehaviour
     public void stageComplete() {
         if (currentDungeon.Value == "Dungeon1") {
             currentDungeon.Value = "NEWDungeon2";
-            SceneManager.LoadScene("NEWDungeon2");
+            SceneManager.LoadScene("Cutscene-ClearStage1");
         }
         else if (currentDungeon.Value == "NEWDungeon2") {
             currentDungeon.Value = "Dungeon4";
-            SceneManager.LoadScene("Dungeon4");
+            SceneManager.LoadScene("Cutscene-ClearStage2");
         }
         else if (currentDungeon.Value == "Dungeon4") {
             UIObject.SetActive(false);
