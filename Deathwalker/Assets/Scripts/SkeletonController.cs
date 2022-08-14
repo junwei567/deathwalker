@@ -89,6 +89,7 @@ public class SkeletonController : Movement
 
         if (vulnerable & dying) {
             GameManager.instance.enemyKilled();
+            GameManager.instance.displayKillsLeft();
             skeleton.SetActive(false);
         }
 
