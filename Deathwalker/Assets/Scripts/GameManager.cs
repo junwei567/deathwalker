@@ -247,4 +247,15 @@ public class GameManager : MonoBehaviour
         public string name;
     }
 
+    public void setEasy() {
+        dungeon1Kills.Value = 20;
+        dungeon2Kills.Value = 30;
+        dungeon4Kills.Value = 40;
+    }
+    public void setHard() {
+        dungeon1Kills.Value = 40;
+        dungeon2Kills.Value = 80;
+        dungeon4Kills.Value = 120;
+    }
+
 }
