@@ -19,6 +19,7 @@ public class WinnerwinnerLoader : MonoBehaviour
     IEnumerator LoadLevel() {
         transition.SetTrigger("Start");
         yield return new WaitForSeconds(transitionTime);
+        Cursor.visible = true;
         // Load start menu when player has no more lives
         SceneManager.LoadScene("Winnerwinner");
     }
